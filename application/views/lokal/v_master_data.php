@@ -17,11 +17,12 @@
 	            <table id="master_lokal" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 	              <thead class="text-primary">
 	                <tr>
-	                  <th class="th-sm" hidden> ID </th>
-	                  <th class="th-sm"> No </th>
-	                  <th class="th-sm"> Nama Barang </th>
-	                  <th class="th-sm"> Satuan </th>
-	                  <th class="th-sm"> Aksi </th>
+	                	<th class="th-sm" style="width: 5%" hidden> ID </th>
+	                	<th class="th-sm" style="width: 5%"> No </th>
+	                	<th class="th-sm" style="width: 30%"> Nama Barang </th>
+	                	<th class="th-sm" style="width: 30%"> Min. Pack </th>
+	                	<th class="th-sm" style="width: 10%"> Satuan </th>
+	                	<th class="th-sm" style="width: 20%"> Aksi </th>
 	                </tr>
 	              </thead>
 	              <tbody id="show_master_lokal">
@@ -42,11 +43,12 @@
 	            <table id="master_import" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 	              <thead class="text-primary">
 	                <tr>
-	                  <th class="th-sm" hidden> ID </th>
-	                  <th class="th-sm"> No </th>
-	                  <th class="th-sm"> Nama Barang </th>
-	                  <th class="th-sm"> Satuan </th>
-	                  <th class="th-sm"> Aksi </th>
+	                	<th class="th-sm" style="width: 5%" hidden> ID </th>
+	                	<th class="th-sm" style="width: 5%"> No </th>
+	                	<th class="th-sm" style="width: 30%"> Nama Barang </th>
+	                	<th class="th-sm" style="width: 30%"> Min. Pack </th>
+	                	<th class="th-sm" style="width: 10%"> Satuan </th>
+	                	<th class="th-sm" style="width: 20%"> Aksi </th>
 	                </tr>
 	              </thead>
 	              <tbody id="show_master_import">
@@ -68,7 +70,7 @@
 			<div class="modal-dialog" role="document" >
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">New Item Local</h4>
+						<h4 class="modal-title">New Item</h4>
 						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
@@ -155,6 +157,39 @@
 			
 		</div>
 	</form>
+	<!-- End Update -->
+	<!-- delete lokal -->
+	<form id="formdelete">
+		<div class="modal fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Component</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+					<div class="modal-body">			              
+						<div class="form-group col-lg-12">
+							<label>Apa Anda Yakin Ingin Meng<font style="color: red;"><b>Hapus</b></font> ini?</label>
+							<br><br>
+							<center><H4 id="msglokal"></H4></center>
+							<input type="hidden" name="iddel" id="iddel" class="form-control">
+
+						</div>
+
+						<br />
+						<center>
+							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
+							<button type="submit" id="btn_delete" class="btn btn-danger col-md-3">Hapus</button>	
+						</center>
+					</div>
+					<div class="modal-footer">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- end delete -->
 
 </section>
     <!-- /.content

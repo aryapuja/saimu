@@ -18,7 +18,7 @@ class Ksokp_model extends CI_Model {
 
 /* ============================================== LOKAL ============================================== */
 
-	public function newMaster($nama_brg,$satuan,$min_pack,$jenis)
+	public function newMaster($jenis,$nama_brg,$satuan,$min_pack)
     {
     	if($jenis == "master_lokal"){
 			$data = array(
@@ -47,6 +47,19 @@ class Ksokp_model extends CI_Model {
 		$this->db->where('id_brg_lokal', $id);
 		$result = $this->db->insert('master_lokal',$data);
 		return 	$result;
+	}
+
+	public function deleteMaster()
+	{
+		$id = $this->input->post('id');
+		$tabel = $this->input->post('tabel');
+		if($tabel == 'master_lokal'){
+        	$this->db->where('id_brg_lokal', $id);
+		}else{
+        	$this->db->where('id_brg_import', $id);
+		}
+        $result = $this->db->delete($tabel);
+        return $result;
 	}
 
 /* ============================================== IMPORT ============================================== */

@@ -37,7 +37,13 @@ public function __construct()
 		$satuan 	= $this->input->post('satuan');
 		$min_pack 	= $this->input->post('min_pack');
 
-		$result=$this->ksokp_model->newMaster($nama_brg,$satuan,$min_pack,$jenis);
+		$result=$this->ksokp_model->newMaster($jenis,$nama_brg,$satuan,$min_pack);
+		echo json_encode($result);
+	}
+
+	public function deleteMaster()
+	{
+		$result = $this->ksokp_model->deleteMaster();
 		echo json_encode($result);
 	}
 
@@ -60,6 +66,7 @@ public function __construct()
 		echo json_encode($result);	
 	}
 
+	
 	/* ============================================== IMPORT ============================================== */
 
 	public function getDataImport()

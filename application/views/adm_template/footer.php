@@ -15,13 +15,12 @@
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <script>
-	$(document).ready(function () {
+	$(document).ready(function() {
 		$('.sidebar-menu').tree();
     	showMasterLokal();   //pemanggilan fungsi tampil lokal.
     	showMasterImport();   //pemanggilan fungsi tampil lokal.
 
 
-    // $('#master_lokal').dataTable();
     //fungsi tampil barang
     function showMasterLokal(){
         $.ajax({
@@ -38,10 +37,11 @@
 	                            '<td hidden>'+data[i].id_brg_lokal+'</td>'+
 	                            '<td>'+ii+'</td>'+
 	                            '<td>'+data[i].nama_brg_lokal+'</td>'+
+	                            '<td>'+data[i].min_pack_lokal+'</td>'+
 	                            '<td>'+data[i].satuan_lokal+'</td>'+
-	                            '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id_brg_lokal+'" data-brg="'+data[i].nama_brg_lokal+'" data-satuan="'+data[i].satuan_lokal+'" data-min="'+data[i].min_pack_lokal+'"> Edit</a>'+ 
+	                            '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id_brg_lokal+'" data-brg="'+data[i].nama_brg_lokal+'" data-satuan="'+data[i].satuan_lokal+'" data-min="'+data[i].min_pack_lokal+'"> <span class="fa fa-edit"></span> </a>'+ 
 	                            		'     '+
-	                            		'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2"> Hapus</a>'+
+	                            		'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_deletelokal" data-id="'+data[i].id_brg_lokal+'" data-brg="'+data[i].nama_brg_lokal+'"> <span class="fa fa-remove"></span> </a>'+
 			                    '</td>'+
                             '</tr>';
                 }
@@ -62,7 +62,7 @@
         });
     }
 
-     function showMasterImport(){
+    function showMasterImport(){
         $.ajax({
             type  : 'POST',
             url   : '<?php echo base_url()?>index.php/ksokp_controller/getDataImport',
@@ -77,10 +77,11 @@
 	                            '<td hidden>'+data[i].id_brg_import+'</td>'+
 	                            '<td>'+ii+'</td>'+
 	                            '<td>'+data[i].nama_brg_import+'</td>'+
+	                            '<td>'+data[i].min_pack_import+'</td>'+
 	                            '<td>'+data[i].satuan_import+'</td>'+
-	                            '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id_brg_import+'" data-brg="'+data[i].nama_brg_import+'" data-satuan="'+data[i].satuan_import+'" data-min="'+data[i].min_pack_import+'"> Edit</a>'+ 
+	                            '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit" data-id="'+data[i].id_brg_import+'" data-brg="'+data[i].nama_brg_import+'" data-satuan="'+data[i].satuan_import+'" data-min="'+data[i].min_pack_import+'"> <span class="fa fa-edit"></span> </a>'+ 
 	                            		'     '+
-	                            		'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete2"> Hapus</a>'+
+	                            		'<a href="javascript:void(0);" class="btn btn-danger btn-sm item_deleteimport" data-id="'+data[i].id_brg_import+'" data-brg="'+data[i].nama_brg_import+'"> <span class="fa fa-remove"></span> </a>'+
 			                    '</td>'+
                             '</tr>';
                 }
@@ -101,15 +102,15 @@
         });
     }
 
-    //   ========================  Start ADD RECORD ====================================
+/* ========================  Start ADD RECORD ==================================== */
 	        //Save kegiatan baru
-	        $('#formnew').submit(function(e){
-	        	        e.preventDefault();
+	        $('#formnewmaster').submit(function(e){
+	       		e.preventDefault();
         		// memasukkan data inputan ke variabel
-        		var jenis	 		= $('#jenis').val();
-        		var nama_brg 		= $('#nama_brg').val();
-        		var satuan 			= $('#satuan').val();
-        		var min_pack  		= $('#min_pack').val();
+        		var jenis		= $('#jenis').val();
+        		var nama_brg	= $('#nama_brg').val();
+        		var satuan		= $('#satuan').val();
+        		var min_pack	= $('#min_pack').val();
 
         		$.ajax({
         			type : "POST",
@@ -119,7 +120,7 @@
         				jenis:jenis,
         				nama_brg:nama_brg,
         				satuan:satuan,
-        				min_pack:min_pack,
+        				min_pack:min_pack
         			},
 
         			success: function(){ 
@@ -131,83 +132,87 @@
 
         		return false;
         	});
-//  ========================  END ADD RECORD ====================================
-//	===================  START UPDATE Record ===============================================
-            //get data for UPDATE record show prompt
-            $('#master_lokal').on('click','.item_edit',function(){
-            	// memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
-            	var upid 						= $(this).data('id');
-            	var nama_brg_lokal 				= $('#nama_brg_lokal').val();
-        		var satuan_lokal 				= $('#satuan_lokal').val();
-        		var min_pack_lokal 				= $('#min_pack_lokal').val(); 
+/*  ========================  END ADD RECORD ==================================== */
+//  ===================  START Delete Record ===================================
+            //get data for delete record show prompt modal
+            $('#master_lokal').on('click','.item_deletelokal',function(){
+            	var id = $(this).data('id');
+            	var brg = $(this).data('brg'); 
 
-                // memasukkan data ke form updatean
-                $('[name="u_id"]').val(upid);
-                $('[name="u_nor"]').val(upnor);
-                $('[name="u_no"]').val(upno);
-                $('[name="u_item_changes"]').val(upitem_changes);
-                $('[name="u_line"]').val(upline);
-                $('[name="u_nor_plan_imp"]').val(upnor_plan_imp);
-                $('[name="u_nor_act_imp"]').val(upnor_act_imp);
+            	$('#Modal_delete').modal('show');
+            	document.getElementById("msglokal").innerHTML='Komponen Lokal: "'+brg+'"';
 
-
-                $('#Modal_Update').modal('show');
-                
+            	$('[name="iddel"]').val(id);
             });
-            
-            //UPDATE record to database (submit button)
-            $('#formupdate').submit(function(e){
+
+            //delete record to database
+            $('#formdelete').submit(function(e){
             	e.preventDefault(); 
-        		// memasukkan data dari form update ke variabel untuk update db
-        		var up_id 			= $('#u_id').val();
-        		var up_nor 			= $('#u_nor').val();
-        		var up_no 			= $('#u_no').val();
-        		var up_line 			= $('#u_line').val();
-        		var up_item_changes 	= $('#u_item_changes').val();
-        		var up_nor_plan_imp 	= $('#u_nor_plan_imp').val();
-        		var up_nor_act_imp 	= $('#u_nor_act_imp').val();
+            	var id = $('#iddel').val();
+            	var tabel = "master_lokal";
 
-        		// alert(up_date_plan);
+            	$.ajax({
+            		type : "POST",
+            		url  : "<?php echo site_url(); ?>/ksokp_controller/deleteMaster",
+            		dataType : "JSON",
+            		data : {id:id,tabel:tabel},
+            		success: function(){
+            			$('[name="iddel"]').val("");
+            			$('#Modal_delete').modal('hide'); 
+            			refresh();
+            		}
+            	});
+            	return false;
+            });
 
-				// alert("id:"+up_id+"|nor:"+up_nor+"|no:"+up_no+"|lin:"+up_line+"|item:"+up_item_changes+"|date:"+up_date_plan);        		
-        		$.ajax({
-        			type : "POST",
-        			url  : "<?php echo site_url(); ?>/Dc_controller/updateDc",
-        			dataType : "JSON",
-        			data : { 
-        				u_id:up_id,
-        				u_nor:up_nor,
-        				u_no:up_no,
-        				u_item_changes:up_item_changes,
-        				u_line:up_line,
-        				u_nor_plan_imp:up_nor_plan_imp,
-        				u_nor_act_imp:up_nor_act_imp
-        			},
+            $('#master_import').on('click','.item_deleteimport',function(){
+            	var id = $(this).data('id');
+            	var brg = $(this).data('brg'); 
 
-        			success: function(data){
-        				$('#Modal_Update').modal('hide'); 
-        				refresh();
-        			}
-        		});
-        		return false;
-        	});
-//  ========================  END UPDATE RECORD ====================================
-			function refresh() {
+            	$('#Modal_delete').modal('show');
+            	document.getElementById("msglokal").innerHTML='Komponen Lokal: "'+brg+'"';
 
- 			$("#master_lokal").DataTable().destroy();
- 			$("#master_lokal").find('tbody').empty();
- 			$("#master_import").DataTable().destroy();
- 			$("#master_import").find('tbody').empty();
+            	$('[name="iddel"]').val(id);
+            });
 
- 			document.getElementById('formnew').reset();
- 			// document.getElementById('formupdate').reset();
- 			// document.getElementById('formdelete').reset();
+            //delete record to database
+            $('#formdelete').submit(function(e){
+            	e.preventDefault(); 
+            	var id = $('#iddel').val();
+            	var tabel = "master_import";
 
-    		showMasterLokal();   //pemanggilan fungsi tampil lokal.
-    		showMasterImport();   //pemanggilan fungsi tampil lokal.
-            
-        }
-    });
+            	$.ajax({
+            		type : "POST",
+            		url  : "<?php echo site_url(); ?>/ksokp_controller/deleteMaster",
+            		dataType : "JSON",
+            		data : {id:id,tabel:tabel},
+            		success: function(){
+            			$('[name="iddel"]').val("");
+            			$('#Modal_delete').modal('hide'); 
+            			refresh();
+            		}
+            	});
+            	return false;
+            });
+//   ==================  END DELETE RECORD ====================================
+
+	function refresh() {
+
+		$("#master_lokal").DataTable().destroy();
+		$("#master_lokal").find('tbody').empty();
+		$("#master_import").DataTable().destroy();
+		$("#master_import").find('tbody').empty();
+
+		document.getElementById('formnewmaster').reset();
+		// document.getElementById('formupdate').reset();
+		// document.getElementById('formdelete').reset();
+
+		showMasterLokal();   //pemanggilan fungsi tampil lokal.
+		showMasterImport();   //pemanggilan fungsi tampil lokal.
+        
+    }
+
+	});
 
 </script>
 </body>
