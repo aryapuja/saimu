@@ -17,6 +17,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/AdminLTE/dist/css/skins/_all-skins.min.css">
+  <!-- DataTable -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,7 +36,7 @@
  
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?php echo base_url();?>assets/AdminLTE/index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>PPC</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -76,10 +78,16 @@
             <i class="fa fa-dashboard"></i> <span>User View</span>
           </a>
         </li>
+
+        <li>
+          <a href="<?php echo base_url();?>index.php/ksokp_controller/indexGetData">
+            <i class="fa fa-archive"></i> <span>Master Data</span>
+          </a>
+        </li>
         
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i> <span>Master Data</span>
+            <i class="fa fa-edit"></i> <span>Input Komponen Packing</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>          
@@ -89,10 +97,10 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Import</a></li>
           </ul>
         </li>
-        
+
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Input Komponen Packing</span>
+            <i class="fa fa-history"></i> <span>Data Komponen Packing</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>          
@@ -109,13 +117,6 @@
   </aside>
  
   <!-- =============================================== -->
- 
+
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-    </section>
+<div class="content-wrapper">

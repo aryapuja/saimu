@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2019 at 05:53 AM
+-- Generation Time: Jul 03, 2019 at 09:00 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -102,25 +102,27 @@ INSERT INTO `master_import` (`id_brg_import`, `nama_brg_import`, `satuan_import`
 CREATE TABLE `master_lokal` (
   `id_brg_lokal` int(11) NOT NULL,
   `nama_brg_lokal` varchar(100) NOT NULL,
-  `satuan_lokal` varchar(10) NOT NULL
+  `satuan_lokal` varchar(10) NOT NULL,
+  `min_pack_lokal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_lokal`
 --
 
-INSERT INTO `master_lokal` (`id_brg_lokal`, `nama_brg_lokal`, `satuan_lokal`) VALUES
-(1, 'Tutup Luar', 'pcs'),
-(2, 'TUTUP LUAR-12', 'pcs'),
-(3, 'TUTUP LUAR-24', 'pcs'),
-(4, 'Tutup Luar SF-UK', ''),
-(5, 'Tutup Cover Polytener PT-37', 'pcs'),
-(6, 'Tutup Cover Polytener 4 wing', 'pcs'),
-(7, 'Tutup Cover Polytener PT-78', 'pcs'),
-(8, 'Karton Box S/F NEW', 'pcs'),
-(9, 'Karton Box', 'pcs'),
-(10, 'BOX SF-12\r\n', 'pcs'),
-(11, 'BOX SF-24', 'pcs');
+INSERT INTO `master_lokal` (`id_brg_lokal`, `nama_brg_lokal`, `satuan_lokal`, `min_pack_lokal`) VALUES
+(1, 'Tutup Luar', 'pcs', 0),
+(2, 'TUTUP LUAR-12', 'pcs', 0),
+(3, 'TUTUP LUAR-24', 'pcs', 0),
+(4, 'Tutup Luar SF-UK', 'pcs', 0),
+(5, 'Tutup Cover Polytener PT-37', 'pcs', 0),
+(6, 'Tutup Cover Polytener 4 wing', 'pcs', 0),
+(7, 'Tutup Cover Polytener PT-78', 'pcs', 0),
+(8, 'Karton Box S/F NEW', 'pcs', 0),
+(9, 'Karton Box', 'pcs', 0),
+(10, 'BOX SF-12\r\n', 'pcs', 0),
+(11, 'BOX SF-24', 'pcs', 0),
+(12, 'Karton Box AF PT-78', 'pcs', 18);
 
 -- --------------------------------------------------------
 
@@ -140,15 +142,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `section`) VALUES
-(1, 'ppc1', 'ppc1', 'ppc'),
-(2, 'ppc2', 'ppc2', 'ppc'),
-(3, 'de', 'de', 'de'),
-(4, 'pp', 'pp', 'pp'),
-(5, 'qp', 'qp', 'qp'),
-(6, 'qmp', 'qmp', 'qmp'),
-(7, 'eng', 'eng', 'eng'),
-(8, 'nys', 'nys', 'nys'),
-(9, 'prod', 'prod', 'prod');
+(1, 'ksokp_ppc', 'ppc210398', 'ppc'),
+(2, 'ppc_ksokp', 'ppc180698', 'ppc'),
+(10, 'admin', 'admin', 'ppc'),
+(11, ' ', ' ', 'ppc');
 
 --
 -- Indexes for dumped tables
@@ -219,13 +216,13 @@ ALTER TABLE `master_import`
 -- AUTO_INCREMENT for table `master_lokal`
 --
 ALTER TABLE `master_lokal`
-  MODIFY `id_brg_lokal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_brg_lokal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
