@@ -16,8 +16,6 @@ class Ksokp_model extends CI_Model {
 		return $query->result();
 	}
 
-/* ============================================== LOKAL ============================================== */
-
 	public function newMaster($jenis,$nama_brg,$satuan,$min_pack)
     {
     	if($jenis == "master_lokal"){
@@ -36,19 +34,6 @@ class Ksokp_model extends CI_Model {
 		return $this->db->insert($jenis,$data);
 	}
 
-	public function updateMasterLokal($id,$nama_brg_lokal,$satuan_lokal,$min_pack_lokal)
-	{
-		$data = array(
-			'nama_brg_lokal' =>$nama_brg_lokal , 
-			'satuan_lokal' =>$satuan_lokal , 
-			'min_pack_lokal' =>$min_pack_lokal , 
-		);
-
-		$this->db->where('id_brg_lokal', $id);
-		$result = $this->db->insert('master_lokal',$data);
-		return 	$result;
-	}
-
 	public function deleteMaster()
 	{
 		$id = $this->input->post('id');
@@ -61,6 +46,33 @@ class Ksokp_model extends CI_Model {
         $result = $this->db->delete($tabel);
         return $result;
 	}
+
+	public function updateMaster($id,$nama_brg,$satuan,$min_pack,$tabel)
+	{
+		if($tabel == "master_lokal"){
+			$data = array(
+				'nama_brg_lokal' 	=>$nama_brg, 
+				'satuan_lokal' 		=>$satuan , 
+				'min_pack_lokal' 	=>$min_pack, 
+			);
+			$this->db->where('id_brg_lokal', $id);
+    	}else{
+    		$data = array(
+				'nama_brg_import' 	=>$nama_brg, 
+				'satuan_import' 	=>$satuan, 
+				'min_pack_import' 	=>$min_pack, 
+			);
+			$this->db->where('id_brg_import', $id);
+    	}
+    	
+		$result = $this->db->update($tabel,$data);
+		return 	$result;
+	}
+
+/* ============================================== LOKAL ============================================== */
+
+	
+
 
 /* ============================================== IMPORT ============================================== */
 

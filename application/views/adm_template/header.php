@@ -55,7 +55,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li>
-            <a href="<?php echo base_url();?>index.php/login/logout"><i class="fa fa-sign-out"></i></a>
+            <a href="<?php echo base_url();?>index.php/login/logout"><i class="fa fa-sign-out"> LOGOUT</i></a>
           </li>
         </ul>
       </div>

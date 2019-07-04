@@ -64,7 +64,7 @@
 	
 	</div>
 
-<!-- form new master lokal -->
+<!-- START FORM NEW MASTER -->
 	<form id="formnewmaster">
 		<div class="modal fade" id="Modal_addmaster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document" >
@@ -114,13 +114,15 @@
 			
 		</div>
 	</form>
-	<!-- form new master lokal -->
-	<form id="formupdatelokal">
-		<div class="modal fade" id="Modal_updatemasterlokal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- END FORM NEW MASTER -->
+
+<!-- START FORM UPDATE MASTER -->
+	<form id="formupdatemasterlokal">
+		<div class="modal fade" id="Modal_update_master_lokal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document" style="max-width: 70%">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Update Item Local</h4>
+						<h4 class="modal-title">Update Item</h4>
 						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
@@ -129,15 +131,15 @@
 								<div class="form-group col-lg-12 row">
 									<div class="col-4">
 										<label>Item</label>
-										<input type="text" id="nama_brg_lokal_up" name="nama_brg_lokal_up" class="form-control" placeholder="Masukkan Item" style="width: 100%" required>
+										<input type="text" id="nama_brg_up_mlokal" name="nama_brg_up_mlokal" class="form-control" placeholder="Masukkan Item" style="width: 100%" required>
 									</div>
 									<div class="col-4">
 										<label>Satuan Lokal</label>
-										<input type="text" id="satuan_lokal_up" name="satuan_lokal_up" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required>
+										<input type="text" id="satuan_up_mlokal" name="satuan_up_mlokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required>
 									</div>
 									<div class="col-4">
 										<label>Minimum Pack</label>
-										<input type="number" id="min_pack_lokal_up" name="min_pack_lokal_up" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
+										<input type="number" id="min_pack_up_mlokal" name="min_pack_up_mlokal" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
 									</div>
 								</div>
 							</div>
@@ -146,7 +148,7 @@
 						
 					</div>
 					<div class="modal-footer">
-						<input type="hidden" id="id_brg_lokal_up" name="id_brg_lokal_up" value="">
+						<input type="hidden" id="id_brg_up_mlokal" name="id_brg_up_mlokal" value="">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 						<button type="submit" class="btn btn-primary">Update</button>
 					</div>
@@ -157,10 +159,54 @@
 			
 		</div>
 	</form>
-	<!-- End Update -->
-	<!-- delete lokal -->
-	<form id="formdelete">
-		<div class="modal fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+	<form id="formupdatemasterimport">
+		<div class="modal fade" id="Modal_update_master_import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" style="max-width: 70%">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Update Item</h4>
+						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="form-group col-lg-12 row">
+									<div class="col-4">
+										<label>Item</label>
+										<input type="text" id="nama_brg_up_mimport" name="nama_brg_up_mimport" class="form-control" placeholder="Masukkan Item" style="width: 100%" required>
+									</div>
+									<div class="col-4">
+										<label>Satuan Lokal</label>
+										<input type="text" id="satuan_up_mimport" name="satuan_up_mimport" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required>
+									</div>
+									<div class="col-4">
+										<label>Minimum Pack</label>
+										<input type="number" id="min_pack_up_mimport" name="min_pack_up_mimport" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" id="id_brg_up_mimport" name="id_brg_up_mimport" value="">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+	</form>
+<!-- END FORM UPDATE MASTER -->
+
+<!-- START FORM DELETE MASTER -->
+	<form id="formdeletemasterlokal">
+		<div class="modal fade" id="Modal_delete_master_lokal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -172,7 +218,7 @@
 							<label>Apa Anda Yakin Ingin Meng<font style="color: red;"><b>Hapus</b></font> ini?</label>
 							<br><br>
 							<center><H4 id="msglokal"></H4></center>
-							<input type="hidden" name="iddel" id="iddel" class="form-control">
+							<input type="hidden" name="iddellokal" id="iddellokal" class="form-control">
 
 						</div>
 
@@ -189,7 +235,38 @@
 			</div>
 		</div>
 	</form>
-	<!-- end delete -->
+
+	<form id="formdeletemasterimport">
+		<div class="modal fade" id="Modal_delete_master_import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Component</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
+					</div>
+					<div class="modal-body">			              
+						<div class="form-group col-lg-12">
+							<label>Apa Anda Yakin Ingin Meng<font style="color: red;"><b>Hapus</b></font> ini?</label>
+							<br><br>
+							<center><H4 id="msgimport"></H4></center>
+							<input type="hidden" name="iddelimport" id="iddelimport" class="form-control">
+
+						</div>
+
+						<br />
+						<center>
+							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
+							<button type="submit" id="btn_delete" class="btn btn-danger col-md-3">Hapus</button>	
+						</center>
+					</div>
+					<div class="modal-footer">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+<!-- END FORM DELETE MASTER -->
 
 </section>
     <!-- /.content
