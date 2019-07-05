@@ -9,18 +9,21 @@
 	<div class="container-fluid">
 	
 	<div class="form-group">
-	<form id="addKomponenLokal">
+	<form id="addKpLokal">
 	 	<div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Input Data</h3>
             </div>
-            <div class="box-body">
+            <div class="box-body" style="max-height: calc(100vh - 200px);overflow-y: auto; max-width: 100%; overflow-x: hidden;">
               <div class="row input-header">
                 <div class="col-xs-3 form-group">
                 	<label>Item</label>
-                  <select class="form-control" name="itemlokal[]" id="itemlokal" required>
-                  		<option>Pilih</option>
-                  </select>
+                  	<select class="form-control" name="itemlokal[]" id="itemlokal" required>
+                  		<?php foreach ($barang as $key ) { ?>
+                  			<option hidden selected>Pilih Item</option>
+                  			<option value="<?php echo $key->nama_brg_lokal ?>"><?php echo $key->nama_brg_lokal; ?></option>
+                  		<?php } ?>
+                  	</select>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Satuan</label>
@@ -62,7 +65,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
             	<button type="button" class="btn btn-primary"  name="add" id="add">Tambah Data Form</button>
-				<button type="submit" id="submit" class="btn btn-success ">Input Data</button>
+				<button type="submit" id="submit" class="btn btn-success pull-right">Input Data</button>
             </div>
           </div>
 		</form>
@@ -78,13 +81,16 @@
 			<div class="col-xs-3 form-group">
 				<label>Item</label>
                 	<select class="form-control" name="itemlokal[]" id="itemlokal" required>
-                 		<option>Pilih</option>
+                 		<?php foreach ($barang as $key ) { ?>
+                  			<option hidden selected>Pilih Item</option>
+                  			<option value="<?php echo $key->nama_brg_lokal ?>"><?php echo $key->nama_brg_lokal; ?></option>
+                  		<?php } ?>
 					</select>
             </div>
             <div class="col-xs-3 form-group">
             	<label>Satuan</label>
             	<input type="text" class="form-control" name="satuanlokal[]" id="satuanlokal" placeholder="Masukkan Satuan" required>
-            </div>
+            </div>	
             <div class="col-xs-3 form-group">
             	<label>Min. Pack</label>
               	<input type="number" class="form-control" name="minpacklokal[]" id="minpacklokal" placeholder="Masukkan Min. Pack" required>

@@ -69,20 +69,34 @@ class Ksokp_model extends CI_Model {
 		return 	$result;
 	}
 
+	public function getBarang($tabel)
+	{
+		if($tabel=='master_lokal'){
+			$this->db->select('nama_brg_lokal');
+		}else{
+			$this->db->select('nama_brg_import');
+		}
+		$query=$this->db->get($tabel);
+		return $query->result();
+	}
+
+	public function getSatuan($tabel)
+	{
+		if($tabel=='master_lokal'){
+			$this->db->select('satuan_lokal');
+		}else{
+			$this->db->select('satuan_import');
+		}
+		$query=$this->db->get($tabel);
+		return $query->result();
+	}
+
 /* ============================================== LOKAL ============================================== */
-
-	public function getBarangLokal()
+	
+	public function insertDataLokal($data)
 	{
-		$query=$this->db->query("SELECT nama_brg_lokal from komponen_lokal");
-		return $query->result();
+        return $this->db->insert_batch('komponen_lokal', $data);
 	}
-
-	public function getSatuanLokal()
-	{
-		$query=$this->db->query("SELECT satuan_lokal from komponen_lokal");
-		return $query->result();
-	}
-
 
 /* ============================================== IMPORT ============================================== */
 

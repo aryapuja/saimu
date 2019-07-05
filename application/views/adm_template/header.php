@@ -88,14 +88,14 @@
         
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i>  <span class="logo-lg">Input Komponen Packing</span>  <span hidden class="logo-mini">Input KP</span>
+            <i class="fa fa-edit"></i> <span class="logo-lg">Input Komponen Packing</span> <span hidden class="logo-mini">Input KP</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>          
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/insertDataLokal"><i class="fa fa-circle-o"></i> Lokal</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Import</a></li>
+            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/formDataLokal"><i class="fa fa-circle-o"></i> Lokal</a></li>
+            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/formDataImport"><i class="fa fa-circle-o"></i> Import</a></li>
           </ul>
         </li>
 

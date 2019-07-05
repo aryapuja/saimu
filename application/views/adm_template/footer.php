@@ -66,8 +66,8 @@
     			$('#master_lokal').DataTable({
     				destroy			: true,
     				'autoWidth'   	: true,
-    				'paging'		: true,
-    				'lengthChange'	: true,
+    				'paging'		: false,
+    				'lengthChange'	: false,
     				'searching'   	: true,
     				'ordering'    	: true,
     				'info'        	: true
@@ -106,8 +106,8 @@
     			$('#master_import').DataTable({
     				destroy			: true,
     				'autoWidth'   	: true,
-    				'paging'		: true,
-    				'lengthChange'	: true,
+    				'paging'		: false,
+    				'lengthChange'	: false,
     				'searching'   	: true,
     				'ordering'    	: true,
     				'info'        	: true
@@ -117,7 +117,7 @@
     	});
     }
 
-    /* =================================== START ADD RECORD ===================================		*/
+    /* =================================== START ADD MASTER ===================================	*/
     //Save kegiatan baru
     $('#formnewmaster').submit(function(e){
     	e.preventDefault();
@@ -146,9 +146,9 @@
 
 		return false;
 	});
-    /*  =================================== END ADD RECORD ===================================		*/
+    /*  =================================== END ADD MASTER ===================================		*/
 
-    /*  =================================== START DELETE RECORD ===================================	*/
+    /*  =================================== START DELETE MASTER ===================================	*/
     //get data for delete record show prompt modal
     $('#master_lokal').on('click','.item_delete_mlokal',function(){
     	var id = $(this).data('id_mlokal');
@@ -211,9 +211,9 @@
     });
 
 
-    /*	=================================== END DELETE RECORD ===================================	*/
+    /*	=================================== END DELETE MASTER ===================================	*/
 
-    /*  =================================== START UPDATE RECORD ===================================	*/
+    /*  =================================== START UPDATE MASTER ===================================	*/
 
     $('#master_lokal').on('click','.item_edit_mlokal',function(){
     	// memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
@@ -231,7 +231,7 @@
         $('#Modal_update_master_lokal').modal('show');
     });
     
-    //UPDATE record to database (submit button)
+    //UPDATE MASTER to database (submit button)
     $('#formupdatemasterlokal').submit(function(e){
     	e.preventDefault(); 
 		// memasukkan data dari form update ke variabel untuk update db
@@ -240,7 +240,7 @@
 		var up_satuan	= $('#satuan_up_mlokal').val();
 		var up_min_pack	= $('#min_pack_up_mlokal').val();
 		var tabel 		= "master_lokal";
-		alert(up_id);
+
 		$.ajax({
 			type : "POST",
 			url  : "<?php echo site_url(); ?>/ksokp_controller/updateMaster",
@@ -277,7 +277,7 @@
 	    $('#Modal_update_master_import').modal('show');
 	});
 
-    //UPDATE record to database (submit button)
+    //UPDATE MASTER to database (submit button)
     $('#formupdatemasterimport').submit(function(e){
     	e.preventDefault(); 
 		// memasukkan data dari form update ke variabel untuk update db
@@ -307,7 +307,37 @@
 		return false;
 	});
 
-    /*  =================================== START UPDATE RECORD ===================================	*/
+    /*  =================================== END UPDATE MASTER ===================================	*/
+
+    /*  =================================== START ADD KP =================================== */
+    $('#addKpLokal').submit(function(e){
+                e.preventDefault();
+                // memasukkan data inputan ke variabel
+                var itemlokal         = $('#itemlokal').val();
+                var satuanlokal          = $('#satuanlokal').val();
+                var minpacklokal    = $('#minpacklokal').val();
+                var supplierlokal    = $('#supplierlokal').val();
+                var avgusagelokal = $('#avgusagelokal').val();
+                var stodailylokal  = $('#stodailylokal').val();
+                var usagedailylokal  = $('#usagedailylokal').val();
+                var incomingdailylokal  = $('#incomingdailylokal').val();
+
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo site_url(); ?>/ksokp_controller/insertDataLokal",
+                    dataType : "JSON",
+                    data : $('#addKpLokal').serialize(),
+
+                    success: function(data){ 
+                        window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataLokal");
+                    }
+                });
+
+                return false;
+            });
+
+    /*  =================================== END ADD KP =================================== */
+
 
     function refresh() {
 

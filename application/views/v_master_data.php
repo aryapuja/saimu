@@ -12,7 +12,7 @@
 
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">	
 		<div class="box">  
-			<div class="box-body">
+			<div class="box-body" style="max-height: calc(100vh - 150px);overflow-y: auto; max-width: 100%; overflow-x: hidden;">
 				
 	            <table id="master_lokal" class="table table-striped table-bordered table-responsive" cellspacing="0" style="width: 100%;">
 	              <thead class="text-primary">
@@ -38,7 +38,7 @@
 
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">	
 		<div class="box">  
-			<div class="box-body">
+			<div class="box-body" style="max-height: calc(100vh - 150px);overflow-y: auto; max-width: 100%; overflow-x: hidden;">
 				
 	            <table id="master_import" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 	              <thead class="text-primary">
