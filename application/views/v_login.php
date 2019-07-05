@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?php echo base_url();?>assets/login/images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="<?=base_url()?>assets/logoaja2.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,7 +34,7 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" action="<?php echo base_url().'index.php/login'?>" method='post'>
 					<span class="login100-form-title p-b-33">
-						<img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" width="100px" >
+						<img class ="navbar-brand" src="<?=base_url()?>assets/logoaja.png" style="width: 100%; height: auto;" >
 					</span>
 					<span class="login100-form-title p-b-33">
 						Kontrol Stock & Ordering Komponen Packing 

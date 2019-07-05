@@ -26,7 +26,7 @@ public function __construct()
 	public function indexGetData()
 	{
 		$this->load->view('adm_template/header.php');
-		$this->load->view('lokal/v_master_data.php');
+		$this->load->view('v_master_data.php');
 		$this->load->view('adm_template/footer.php');
 	}
 
@@ -65,6 +65,16 @@ public function __construct()
 	{
 		$data=$this->ksokp_model->getData('master_lokal');
         echo json_encode($data);
+	}
+
+	public function insertDataLokal()
+	{
+		$data['barang'] = $this->ksokp_model->getBarangLokal();
+		$data['satuan'] = $this->ksokp_model->getSatuanLokal();
+
+		$this->load->view('adm_template/header.php');
+		$this->load->view('lokal/v_ins_kp_lokal.php',$data);
+		$this->load->view('adm_template/footer.php');
 	}
 	
 	/* ============================================== IMPORT ============================================== */

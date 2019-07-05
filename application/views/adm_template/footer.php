@@ -20,7 +20,22 @@
     	showMasterLokal();   //pemanggilan fungsi tampil lokal.
     	showMasterImport();   //pemanggilan fungsi tampil lokal.
 
+    	var i=1;  
+	    $('#add').click(function(){  
+	        i++;  
+	        $('#input-container').find('.input-header').attr('id','row'+i);
+	        $('#input-container').find('button[name="remove"]').attr('id',i);
+	        var html = String($('#input-container').html()); 
+	        $('.input-field').append(html);  
+	   	});
 
+	    $(document).on('click', '.btn_remove', function(){  
+	        var button_id = $(this).attr("id");   
+	        $('#row'+button_id+'').remove();  
+	    });
+
+	    
+	    
     //fungsi tampil barang
     function showMasterLokal(){
     	$.ajax({
@@ -49,13 +64,13 @@
     			$('master_lokal').find('tbody').empty();
     			$('#show_master_lokal').html(html);
     			$('#master_lokal').DataTable({
-    				destroy		: true,
-    				'paging'      : true,
-    				'lengthChange': true,
-    				'searching'   : true,
-    				'ordering'    : true,
-    				'info'        : true,
-    				'autoWidth'   : true
+    				destroy			: true,
+    				'autoWidth'   	: true,
+    				'paging'		: true,
+    				'lengthChange'	: true,
+    				'searching'   	: true,
+    				'ordering'    	: true,
+    				'info'        	: true
     			});
     		}
 
@@ -89,13 +104,13 @@
     			$('master_import').find('tbody').empty();
     			$('#show_master_import').html(html);
     			$('#master_import').DataTable({
-    				destroy		: true,
-    				'paging'      : true,
-    				'lengthChange': true,
-    				'searching'   : true,
-    				'ordering'    : true,
-    				'info'        : true,
-    				'autoWidth'   : true
+    				destroy			: true,
+    				'autoWidth'   	: true,
+    				'paging'		: true,
+    				'lengthChange'	: true,
+    				'searching'   	: true,
+    				'ordering'    	: true,
+    				'info'        	: true
     			});
     		}
 

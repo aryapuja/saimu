@@ -71,7 +71,17 @@ class Ksokp_model extends CI_Model {
 
 /* ============================================== LOKAL ============================================== */
 
-	
+	public function getBarangLokal()
+	{
+		$query=$this->db->query("SELECT nama_brg_lokal from komponen_lokal");
+		return $query->result();
+	}
+
+	public function getSatuanLokal()
+	{
+		$query=$this->db->query("SELECT satuan_lokal from komponen_lokal");
+		return $query->result();
+	}
 
 
 /* ============================================== IMPORT ============================================== */

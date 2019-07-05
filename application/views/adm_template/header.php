@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>PT SAI: PPC SECTION</title>
+  <link rel="icon" type="image/png" href="<?=base_url()?>assets/logoaja2.png"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -30,7 +31,7 @@
   <!-- Google Font -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini ">
 <!-- Site wrapper -->
 <div class="wrapper">
  
@@ -87,23 +88,23 @@
         
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Input Komponen Packing</span>
+            <i class="fa fa-edit"></i>  <span class="logo-lg">Input Komponen Packing</span>  <span hidden class="logo-mini">Input KP</span>
               <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>          
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>          
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Lokal</a></li>
+            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/insertDataLokal"><i class="fa fa-circle-o"></i> Lokal</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Import</a></li>
           </ul>
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-history"></i> <span>Data Komponen Packing</span>
+            <i class="fa fa-history"></i> <span class="logo-lg">Data Komponen Packing</span>  <span hidden class="logo-mini">Data KP</span>
               <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>          
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>          
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Lokal</a></li>
