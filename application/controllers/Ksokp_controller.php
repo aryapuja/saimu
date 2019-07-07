@@ -79,8 +79,6 @@ public function __construct()
 
 	public function insertDataLokal()
 	{
-		date_default_timezone_set("Asia/Jakarta");
-
 		$itemlokal 			= $_POST['itemlokal']; 
 		$satuanlokal 		= $_POST['satuanlokal']; 
 		$minpacklokal 		= $_POST['minpacklokal']; 
@@ -93,6 +91,18 @@ public function __construct()
 		
 		$index = 0; // Set index array awal dengan 0
 		foreach($itemlokal as $dataitemlokal){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+			$ss_pcs[$index] 			= $this->ksokp_model->ceiling($avgusagelokal[$index]*0.8,$minpacklokal[$index]);
+			$ss_day[$index]				= number_format($this->ksokp_model->ceiling($avgusagelokal[$index]*0.8,$minpacklokal[$index])/$avgusagelokal[$index],2);
+			$bal[$index]				= ($stodailylokal[$index] + $incomingdailylokal[$index]) - $usagedailylokal[$index];
+			$bts_atas[$index]			= $ss_pcs[$index]+($ss_pcs[$index]*0.2);
+			$bts_bawah[$index]			= $ss_pcs[$index]-($ss_pcs[$index]*0.2);
+			if($bal[$index] < $bts_bawah[$index]){
+				$status[$index]			= "LESS STOCK";
+			}else if($bal[$index] > $bts_atas[$index]){
+				$status[$index]			= "OVER STOCK";
+			}else{
+				$status[$index]			= "OK";
+			}
 			array_push($data, array(
 				'nama_brg_lokal'			=> $dataitemlokal,
 				'satuan_lokal'				=> $satuanlokal[$index],
@@ -102,16 +112,15 @@ public function __construct()
 				'sto_daily_lokal'			=> $stodailylokal[$index],
 				'usage_daily_lokal'			=> $usagedailylokal[$index],
 				'incoming_daily_lokal'		=> $incomingdailylokal[$index],
-				'safety_stock_pcs_lokal'	=> ceil($avgusagelokal[$index]*0.8),
-				'safety_stock_day_lokal'	=> ceil($avgusagelokal[$index])/$avgusagelokal[$index],
-				'bal_lokal'					=> ($stodailylokal[$index] + $incomingdailylokal[$index]) - $usagedailylokal[$index],
-				'status_lokal'					=> "OKE",
+				'safety_stock_pcs_lokal'	=> $ss_pcs[$index],
+				'safety_stock_day_lokal'	=> $ss_day[$index],
+				'bal_lokal'					=> $bal[$index],
+				'status_lokal'				=> $status[$index],
 			));
-			
 			$index++;
 		}
 		
-		$sql = $this->ksokp_model->insertDataLokal($data);
+		$sql = $this->ksokp_model->insertDataKp($data,"komponen_lokal");
 
 		echo json_encode($sql);
 	}
@@ -132,5 +141,53 @@ public function __construct()
 		$this->load->view('adm_template/header.php');
 		$this->load->view('import/v_ins_kp_import.php',$data);
 		$this->load->view('adm_template/footer.php');
+	}
+
+	public function insertDataImport()
+	{
+		$itemimport 			= $_POST['itemimport']; 
+		$satuanimport 			= $_POST['satuanimport']; 
+		$minpackimport 			= $_POST['minpackimport']; 
+		$supplierimport 		= $_POST['supplierimport'];
+		$avgusageimport 		= $_POST['avgusageimport'];
+		$stodailyimport 		= $_POST['stodailyimport'];
+		$usagedailyimport 		= $_POST['usagedailyimport'];
+		$incomingdailyimport	= $_POST['incomingdailyimport'];
+		$data = array();
+		
+		$index = 0; // Set index array awal dengan 0
+		foreach($itemimport as $dataitemimport){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+			$ss_day[$index]				= number_format(4,2);
+			$ss_pcs[$index] 			= $ss_day[$index]*$avgusageimport[$index];
+			$bal[$index]				= ($stodailyimport[$index] + $incomingdailyimport[$index]) - $usagedailyimport[$index];
+			$bts_atas[$index]			= $ss_pcs[$index]*0.875;
+			$bts_bawah[$index]			= $ss_pcs[$index]*1.125;
+			if($bal[$index] < $bts_bawah[$index]){
+				$status[$index]			= "LESS STOCK";
+			}else if($bal[$index] > $bts_atas[$index]){
+				$status[$index]			= "OVER STOCK";
+			}else{
+				$status[$index]			= "OK";
+			}
+			array_push($data, array(
+				'nama_brg_import'			=> $dataitemimport,
+				'satuan_import'				=> $satuanimport[$index],
+				'min_pack_import'			=> $minpackimport[$index],
+				'supplier_import'			=> $supplierimport[$index],
+				'avg_usage_import'			=> $avgusageimport[$index],
+				'sto_daily_import'			=> $stodailyimport[$index],
+				'usage_daily_import'		=> $usagedailyimport[$index],
+				'incoming_daily_import'		=> $incomingdailyimport[$index],
+				'safety_stock_pcs_import'	=> $ss_pcs[$index],
+				'safety_stock_day_import'	=> $ss_day[$index],
+				'bal_import'				=> $bal[$index],
+				'status_import'				=> $status[$index],
+			));
+			$index++;
+		}
+		
+		$sql = $this->ksokp_model->insertDataKp($data,"komponen_import");
+
+		echo json_encode($sql);
 	}
 }

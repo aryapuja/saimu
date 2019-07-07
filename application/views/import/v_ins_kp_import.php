@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Input Data Komponen Packing Lokal</h1>
+    Input Data Komponen Packing Import</h1>
 </section>
     <!-- Main content -->
 <section class="content">
@@ -9,51 +9,51 @@
 	<div class="container-fluid">
 	
 	<div class="form-group">
-	<form id="addKpLokal">
+	<form id="addKpImport">
 	 	<div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Input Data Komponen Packing Lokal</h3>
+              <h3 class="box-title">Input Data Komponen Packing Import</h3>
             </div>
             <div class="box-body" style="max-height: calc(100vh - 200px);overflow-y: auto; max-width: 100%; overflow-x: hidden;">
               <div class="row input-header">
                 <div class="col-xs-3 form-group">
                 	<label>Item</label>
-                  	<select class="form-control" name="itemlokal[]" id="itemlokal" required>
+                  	<select class="form-control" name="itemimport[]" id="itemimport" required>
                   		<?php foreach ($barang as $key ) { ?>
                   			<option hidden selected>Pilih Item</option>
-                  			<option value="<?php echo $key->nama_brg_lokal ?>"><?php echo $key->nama_brg_lokal; ?></option>
+                  			<option value="<?php echo $key->nama_brg_import ?>"><?php echo $key->nama_brg_import; ?></option>
                   		<?php } ?>
                   	</select>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Satuan</label>
-                  <input type="text" class="form-control" name="satuanlokal[]" id="satuanlokal" placeholder="Masukkan Satuan" required>
+                  <input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Masukkan Satuan">
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Min. Pack</label>
-                  <input type="number" class="form-control" name="minpacklokal[]" id="minpacklokal" placeholder="Masukkan Min. Pack" required>
+                  <input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Masukkan Min. Pack" required>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Supplier</label>
-                  <input type="text" class="form-control" name="supplierlokal[]" id="supplierlokal" placeholder="Masukkan Supplier" required>
+                  <input type="text" class="form-control" name="supplierimport[]" id="supplierimport" value="IMPORT" readonly>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-3 form-group">
                 	<label>AVG Usage/Day</label>
-                  <input type="number" class="form-control" name="avgusagelokal[]" id="avgusagelokal" placeholder="Masukkan Avg Usage (day)" required>
+                  <input type="number" class="form-control" name="avgusageimport[]" id="avgusageimport" placeholder="Masukkan Avg Usage (day)" required>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>STO DAILY</label>
-                  <input type="number" class="form-control" name="stodailylokal[]" id="stodailylokal" placeholder="Masukkan Sto Daily" required>
+                  <input type="number" class="form-control" name="stodailyimport[]" id="stodailyimport" placeholder="Masukkan Sto Daily" required>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>USAGE DAILY</label>
-                  <input type="number" class="form-control" name="usagedailylokal[]" id="usagedailylokal" placeholder="Masukkan Usage Daily" required>
+                  <input type="number" class="form-control" name="usagedailyimport[]" id="usagedailyimport" placeholder="Masukkan Usage Daily" required>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>INCOMING DAILY</label>
-                  <input type="number" class="form-control" name="incomingdailylokal[]" id="incomingdailylokal" placeholder="Masukkan Incoming Daily" required>
+                  <input type="number" class="form-control" name="incomingdailyimport[]" id="incomingdailyimport" placeholder="Masukkan Incoming Daily" required>
                 </div>
               </div>
             
@@ -80,41 +80,41 @@
         </div>
 			<div class="col-xs-3 form-group">
 				<label>Item</label>
-                	<select class="form-control" name="itemlokal[]" id="itemlokal" required>
+                	<select class="form-control" name="itemimport[]" id="itemimport" required>
                  		<?php foreach ($barang as $key ) { ?>
                   			<option hidden selected>Pilih Item</option>
-                  			<option value="<?php echo $key->nama_brg_lokal ?>"><?php echo $key->nama_brg_lokal; ?></option>
+                  			<option value="<?php echo $key->nama_brg_import ?>"><?php echo $key->nama_brg_import; ?></option>
                   		<?php } ?>
 					</select>
             </div>
             <div class="col-xs-3 form-group">
             	<label>Satuan</label>
-            	<input type="text" class="form-control" name="satuanlokal[]" id="satuanlokal" placeholder="Masukkan Satuan" required>
+            	<input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Masukkan Satuan" required>
             </div>	
             <div class="col-xs-3 form-group">
             	<label>Min. Pack</label>
-              	<input type="number" class="form-control" name="minpacklokal[]" id="minpacklokal" placeholder="Masukkan Min. Pack" required>
+              	<input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Masukkan Min. Pack" required>
             </div>
             <div class="col-xs-3 form-group">
             	<label>Supplier</label>
-              	<input type="text" class="form-control" name="supplierlokal[]" id="supplierlokal" placeholder="Masukkan Supplier" required>
+              	<input type="text" class="form-control" name="supplierimport[]" id="supplierimport" placeholder="Masukkan Supplier" required>
             </div>
     
             <div class="col-xs-3 form-group">
             	<label>AVG Usage/Day</label>
-            	<input type="number" class="form-control" name="avgusagelokal[]" id="avgusagelokal" placeholder="Masukkan Avg Usage (day)" required>
+            	<input type="number" class="form-control" name="avgusageimport[]" id="avgusageimport" placeholder="Masukkan Avg Usage (day)" required>
             </div>
             <div class="col-xs-3 form-group">
             	<label>STO DAILY</label>
-              	<input type="number" class="form-control" name="stodailylokal[]" id="stodailylokal" placeholder="Masukkan Sto Daily" required>
+              	<input type="number" class="form-control" name="stodailyimport[]" id="stodailyimport" placeholder="Masukkan Sto Daily" required>
             </div>
             <div class="col-xs-3 form-group">
             	<label>USAGE DAILY</label>
-              	<input type="number" class="form-control" name="usagedailylokal[]" id="usagedailylokal" placeholder="Masukkan Usage Daily" required>
+              	<input type="number" class="form-control" name="usagedailyimport[]" id="usagedailyimport" placeholder="Masukkan Usage Daily" required>
             </div>
             <div class="col-xs-3 form-group">
             	<label>INCOMING DAILY</label>
-              	<input type="number" class="form-control" name="incomingdailylokal[]" id="incomingdailylokal" placeholder="Masukkan Incoming Daily" required>
+              	<input type="number" class="form-control" name="incomingdailyimport[]" id="incomingdailyimport" placeholder="Masukkan Incoming Daily" required>
             </div>
 		</div>
 		</div>

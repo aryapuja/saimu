@@ -311,30 +311,56 @@
 
     /*  =================================== START ADD KP =================================== */
     $('#addKpLokal').submit(function(e){
-                e.preventDefault();
-                // memasukkan data inputan ke variabel
-                var itemlokal         = $('#itemlokal').val();
-                var satuanlokal          = $('#satuanlokal').val();
-                var minpacklokal    = $('#minpacklokal').val();
-                var supplierlokal    = $('#supplierlokal').val();
-                var avgusagelokal = $('#avgusagelokal').val();
-                var stodailylokal  = $('#stodailylokal').val();
-                var usagedailylokal  = $('#usagedailylokal').val();
-                var incomingdailylokal  = $('#incomingdailylokal').val();
+        e.preventDefault();
+        // memasukkan data inputan ke variabel
+        var itemlokal           = $('#itemlokal').val();
+        var satuanlokal         = $('#satuanlokal').val();
+        var minpacklokal        = $('#minpacklokal').val();
+        var supplierlokal       = $('#supplierlokal').val();
+        var avgusagelokal       = $('#avgusagelokal').val();
+        var stodailylokal       = $('#stodailylokal').val();
+        var usagedailylokal     = $('#usagedailylokal').val();
+        var incomingdailylokal  = $('#incomingdailylokal').val();
 
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo site_url(); ?>/ksokp_controller/insertDataLokal",
-                    dataType : "JSON",
-                    data : $('#addKpLokal').serialize(),
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url(); ?>/ksokp_controller/insertDataLokal",
+            dataType : "JSON",
+            data : $('#addKpLokal').serialize(),
 
-                    success: function(data){ 
-                        window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataLokal");
-                    }
-                });
+            success: function(data){ 
+                window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataLokal");
+            }
+        });
 
-                return false;
-            });
+        return false;
+    });
+
+    $('#addKpImport').submit(function(e){
+        e.preventDefault();
+        // memasukkan data inputan ke variabel
+        var itemimport           = $('#itemimport').val();
+        var satuanimport         = $('#satuanimport').val();
+        var minpackimport        = $('#minpackimport').val();
+        var supplierimport       = $('#supplierimport').val();
+        var avgusageimport       = $('#avgusageimport').val();
+        var stodailyimport       = $('#stodailyimport').val();
+        var usagedailyimport     = $('#usagedailyimport').val();
+        var incomingdailyimport  = $('#incomingdailyimport').val();
+
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url(); ?>/ksokp_controller/insertDataImport",
+            dataType : "JSON",
+            data : $('#addKpImport').serialize(),
+
+            success: function(data){ 
+                window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataImport");
+            }
+        });
+
+        return false;
+    });
 
     /*  =================================== END ADD KP =================================== */
 

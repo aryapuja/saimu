@@ -91,12 +91,17 @@ class Ksokp_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function ceiling($number, $significance = 1)
+    {
+        return ( is_numeric($number) && is_numeric($significance) ) ? (ceil($number/$significance)*$significance) : false;
+    }
+
+	public function insertDataKp($data,$table)
+	{
+		return $this->db->insert_batch($table, $data);
+	}
 /* ============================================== LOKAL ============================================== */
 	
-	public function insertDataLokal($data)
-	{
-        return $this->db->insert_batch('komponen_lokal', $data);
-	}
 
 /* ============================================== IMPORT ============================================== */
 
