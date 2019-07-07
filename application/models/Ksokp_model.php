@@ -100,6 +100,12 @@ class Ksokp_model extends CI_Model {
 	{
 		return $this->db->insert_batch($table, $data);
 	}
+
+	public function getKomponen($tabel)
+	{
+		$query=$this->db->get($tabel);
+		return $query->result();
+	}
 /* ============================================== LOKAL ============================================== */
 	
 

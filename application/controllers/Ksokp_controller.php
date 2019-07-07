@@ -67,6 +67,19 @@ public function __construct()
         echo json_encode($data);
 	}
 
+	public function getKpLokal()
+	{
+		$data=$this->ksokp_model->getKomponen('komponen_lokal');
+        echo json_encode($data);
+	}
+
+	public function indexKpLokal()
+	{
+		$this->load->view('adm_template/header.php');
+		$this->load->view('lokal/v_kp_lokal.php');
+		$this->load->view('adm_template/footer.php');
+	}
+
 	public function formDataLokal()
 	{
 		$data['barang'] = $this->ksokp_model->getBarang("master_lokal");
@@ -131,6 +144,19 @@ public function __construct()
 	{
 		$data=$this->ksokp_model->getData('master_import');
         echo json_encode($data);
+	}
+
+	public function getKpimport()
+	{
+		$data=$this->ksokp_model->getKomponen('komponen_import');
+        echo json_encode($data);
+	}
+
+	public function indexKpimport()
+	{
+		$this->load->view('adm_template/header.php');
+		$this->load->view('import/v_kp_import.php');
+		$this->load->view('adm_template/footer.php');
 	}
 
 	public function formDataImport()

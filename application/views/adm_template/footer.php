@@ -13,12 +13,16 @@
 <!-- DataTable -->
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/sweetalert2@8.js"></script>
+
 
 <script>
 	$(document).ready(function() {
 		$('.sidebar-menu').tree();
     	showMasterLokal();   //pemanggilan fungsi tampil lokal.
-    	showMasterImport();   //pemanggilan fungsi tampil lokal.
+    	showMasterImport(); 
+        showKpLokal();  //pemanggilan fungsi tampil lokal.
+        showKpImport();
 
     	var i=1;  
 	    $('#add').click(function(){  
@@ -139,6 +143,12 @@
 			},
 
 			success: function(){ 
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil menambahkan data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
 				$('#Modal_addmaster').modal('hide'); 
                 refresh();
             }
@@ -147,6 +157,7 @@
 		return false;
 	});
     /*  =================================== END ADD MASTER ===================================		*/
+
 
     /*  =================================== START DELETE MASTER ===================================	*/
     //get data for delete record show prompt modal
@@ -173,6 +184,12 @@
     		data : {id:id,tabel:tabel},
     		success: function(){
     			$('[name="iddellokal"]').val("");
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil menghapus data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
     			$('#Modal_delete_master_lokal').modal('hide'); 
     			refresh();
     		}
@@ -203,6 +220,12 @@
     		data : {id:id,tabel:tabel},
     		success: function(){
     			$('[name="iddelimport"]').val("");
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil menghapus data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
     			$('#Modal_delete_master_import').modal('hide'); 
     			refresh();
     		}
@@ -254,6 +277,12 @@
 			},
 
 			success: function(data){
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil memperbarui data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
 				$('#Modal_update_master_lokal').modal('hide'); 
 				refresh();
 			}
@@ -300,6 +329,12 @@
 			},
 
 			success: function(data){
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil memperbarui data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
 				$('#Modal_update_master_import').modal('hide'); 
 				refresh();
 			}
@@ -307,7 +342,132 @@
 		return false;
 	});
 
-    /*  =================================== END UPDATE MASTER ===================================	*/
+    /*  =================================== END UPDATE MASTER ===================================   */
+    /*  =================================== GET KP Lokal ===================================	*/
+
+    function showKpLokal(){
+        $.ajax({
+            type  : 'POST',
+            url   : '<?php echo base_url()?>index.php/ksokp_controller/getKpLokal',
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                
+                for(i=0; i<data.length; i++){
+                    var ii = i+1;
+                    status = "";
+                    if (data[i].status_lokal == "OK") {
+                        status = "success";
+                    }else if(data[i].status_lokal == "LESS STOCK"){
+                        status = "warning";
+
+                    }else if(data[i].status_lokal == "OVER STOCK"){
+                        status = "danger";
+
+                    }
+                    html += '<tr>'+
+                    '<td hidden>'+data[i].id_lokal+'</td>'+
+                    '<td>'+ii+'</td>'+
+                    '<td>'+data[i].nama_brg_lokal+'</td>'+
+                    '<td>'+data[i].satuan_lokal+'</td>'+
+                    '<td>'+data[i].supplier_lokal+'</td>'+
+                    '<td>'+data[i].min_pack_lokal+'</td>'+
+                    '<td>'+data[i].safety_stock_pcs_lokal+'</td>'+
+                    '<td>'+data[i].safety_stock_day_lokal+'</td>'+
+                    '<td>'+data[i].avg_usage_lokal+'</td>'+
+                    '<td>'+data[i].sto_daily_lokal+'</td>'+
+                    '<td>'+data[i].usage_daily_lokal+'</td>'+
+                    '<td>'+data[i].incoming_daily_lokal+'</td>'+
+                    '<td>'+data[i].bal_lokal+'</td>'+
+                    '<td><span class="badge badge-'+status+'">'+data[i].status_lokal+'</span></td>'+
+                    // '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_mlokal" data-id_mlokal="'+data[i].id_brg_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'" data-satuan_mlokal="'+data[i].satuan_lokal+'" data-min_mlokal="'+data[i].min_pack_lokal+'"> <span class="fa fa-edit"></span> </a>'+ 
+                    // '     '+
+                    // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_mlokal" data-id_mlokal="'+data[i].id_brg_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'"> <span class="fa fa-remove"></span> </a>'+
+                    // '</td>'+
+                    '</tr>';
+                }
+                $('kp_lokal').DataTable().destroy();
+                $('kp_lokal').find('tbody').empty();
+                $('#show_kp_lokal').html(html);
+                $('#kp_lokal').DataTable({
+                    destroy         : true,
+                    'autoWidth'     : true,
+                    'paging'        : true,
+                    'lengthChange'  : true,
+                    'searching'     : true,
+                    'ordering'      : true,
+                    'info'          : true
+                });
+            }
+
+        });
+    }
+    /*  =================================== END KP Lokal ===================================    */
+    /*  =================================== GET KP Import ===================================    */
+
+    function showKpImport(){
+        $.ajax({
+            type  : 'POST',
+            url   : '<?php echo base_url()?>index.php/ksokp_controller/getKpimport',
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                
+                for(i=0; i<data.length; i++){
+                    var ii = i+1;
+                    status = "";
+                    if (data[i].status_import == "OK") {
+                        status = "success";
+                    }else if(data[i].status_import == "LESS STOCK"){
+                        status = "warning";
+
+                    }else if(data[i].status_import == "OVER STOCK"){
+                        status = "danger";
+
+                    }
+                    html += '<tr>'+
+                    '<td hidden>'+data[i].id_import+'</td>'+
+                    '<td>'+ii+'</td>'+
+                    '<td>'+data[i].nama_brg_import+'</td>'+
+                    '<td>'+data[i].satuan_import+'</td>'+
+                    '<td>'+data[i].supplier_import+'</td>'+
+                    '<td>'+data[i].min_pack_import+'</td>'+
+                    '<td>'+data[i].safety_stock_pcs_import+'</td>'+
+                    '<td>'+data[i].safety_stock_day_import+'</td>'+
+                    '<td>'+data[i].avg_usage_import+'</td>'+
+                    '<td>'+data[i].sto_daily_import+'</td>'+
+                    '<td>'+data[i].usage_daily_import+'</td>'+
+                    '<td>'+data[i].incoming_daily_import+'</td>'+
+                    '<td>'+data[i].bal_import+'</td>'+
+                    '<td><span class="badge badge-'+status+'">'+data[i].status_import+'</span></td>'+
+                    // '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_mlokal" data-id_mlokal="'+data[i].id_brg_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'" data-satuan_mlokal="'+data[i].satuan_lokal+'" data-min_mlokal="'+data[i].min_pack_lokal+'"> <span class="fa fa-edit"></span> </a>'+ 
+                    // '     '+
+                    // '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_mlokal" data-id_mlokal="'+data[i].id_brg_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'"> <span class="fa fa-remove"></span> </a>'+
+                    // '</td>'+
+                    '</tr>';
+                }
+                $('kp_import').DataTable().destroy();
+                $('kp_import').find('tbody').empty();
+                $('#show_kp_import').html(html);
+                $('#kp_import').DataTable({
+                    destroy         : true,
+                    'autoWidth'     : true,
+                    'paging'        : true,
+                    'lengthChange'  : true,
+                    'searching'     : true,
+                    'ordering'      : true,
+                    'info'          : true
+                });
+            }
+
+        });
+    }
+    /*  =================================== END GET KP Import ===================================    */
+    
 
     /*  =================================== START ADD KP =================================== */
     $('#addKpLokal').submit(function(e){
@@ -329,7 +489,14 @@
             data : $('#addKpLokal').serialize(),
 
             success: function(data){ 
-                window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataLokal");
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil menambahkan data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                document.getElementById('addKpLokal').reset();
+                // window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataLokal");
             }
         });
 
@@ -339,7 +506,7 @@
     $('#addKpImport').submit(function(e){
         e.preventDefault();
         // memasukkan data inputan ke variabel
-        var itemimport           = $('#itemimport').val();
+       var itemimport           = $('#itemimport').val();
         var satuanimport         = $('#satuanimport').val();
         var minpackimport        = $('#minpackimport').val();
         var supplierimport       = $('#supplierimport').val();
@@ -355,7 +522,14 @@
             data : $('#addKpImport').serialize(),
 
             success: function(data){ 
-                window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataImport");
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil menambahkan data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                document.getElementById('addKpImport').reset();
+                // window.location.replace("<?php echo base_url();?>/index.php/ksokp_controller/formDataImport");
             }
         });
 

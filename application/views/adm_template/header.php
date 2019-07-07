@@ -107,8 +107,8 @@
               </span>          
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Lokal</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Import</a></li>
+            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/indexKpLokal"><i class="fa fa-circle-o"></i> Lokal</a></li>
+            <li><a href="<?php echo base_url();?>index.php/ksokp_controller/indexKpImport"><i class="fa fa-circle-o"></i> Import</a></li>
           </ul>
         </li>
 
