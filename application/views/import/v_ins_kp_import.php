@@ -10,7 +10,7 @@
 	
 	<div class="form-group">
 	<form id="addKpImport">
-	 	<div class="box box-primary">
+	 	<div class="box box-primary" id="row0">
             <div class="box-header with-border">
               <h3 class="box-title">Input Data Komponen Packing Import</h3>
             </div>
@@ -18,10 +18,10 @@
               <div class="row input-header">
                 <div class="col-xs-3 form-group">
                 	<label>Item</label>
-                  	<select class="form-control" name="itemimport[]" id="itemimport" required>
+                  	<select class="form-control" name="itemimport[]" id="itemimport" required onchange="change_satuan2($(this).data('idtarget'))" data-idtarget="row0">
                   		<?php foreach ($barang as $key ) { ?>
                   			<option hidden selected>Pilih Item</option>
-                  			<option value="<?php echo $key->nama_brg_import ?>"><?php echo $key->nama_brg_import; ?></option>
+                  			<option value="<?php echo $key->nama_brg_import ?>" data-satuan="<?php echo $key->satuan_import ?>" data-min="<?php echo $key->min_pack_import ?>"><?php echo $key->nama_brg_import; ?></option>
                   		<?php } ?>
                   	</select>
                 </div>
@@ -80,10 +80,10 @@
         </div>
 			<div class="col-xs-3 form-group">
 				<label>Item</label>
-                	<select class="form-control" name="itemimport[]" id="itemimport" required>
+                	<select class="form-control" name="itemimport[]" id="itemimport" required onchange="change_satuan2($(this).data('idtarget'))">
                  		<?php foreach ($barang as $key ) { ?>
                   			<option hidden selected>Pilih Item</option>
-                  			<option value="<?php echo $key->nama_brg_import ?>"><?php echo $key->nama_brg_import; ?></option>
+                  			<option value="<?php echo $key->nama_brg_import ?>" data-satuan="<?php echo $key->satuan_import ?>" data-min="<?php echo $key->min_pack_import ?>"><?php echo $key->nama_brg_import; ?></option>
                   		<?php } ?>
 					</select>
             </div>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-xs-3 form-group">
             	<label>Supplier</label>
-              	<input type="text" class="form-control" name="supplierimport[]" id="supplierimport" placeholder="Masukkan Supplier" required>
+              	<input type="text" class="form-control" name="supplierimport[]" id="supplierimport" value="IMPORT" readonly>
             </div>
     
             <div class="col-xs-3 form-group">

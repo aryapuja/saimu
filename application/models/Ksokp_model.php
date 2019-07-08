@@ -72,20 +72,35 @@ class Ksokp_model extends CI_Model {
 	public function getBarang($tabel)
 	{
 		if($tabel=='master_lokal'){
-			$this->db->select('nama_brg_lokal');
+			$this->db->select('nama_brg_lokal,satuan_lokal,min_pack_lokal');
 		}else{
-			$this->db->select('nama_brg_import');
+			$this->db->select('nama_brg_import,satuan_import,min_pack_import');
 		}
 		$query=$this->db->get($tabel);
 		return $query->result();
 	}
 
-	public function getSatuan($tabel)
+	public function getSatuan($tabel,$nama_brg)
 	{
 		if($tabel=='master_lokal'){
-			$this->db->select('satuan_lokal');
+			// $this->db->select('*');
+			$this->db->where('nama_brg_lokal', $nama_brg);
 		}else{
 			$this->db->select('satuan_import');
+			$this->db->where('nama_brg_import', $nama_brg);
+		}
+		// $query=;
+		return $this->db->get($tabel);
+	}
+
+	public function getMinPack($tabel,$nama_brg)
+	{
+		if($tabel=='master_lokal'){
+			$this->db->select('min_pack_lokal');
+			$this->db->where('nama_brg_lokal', $nama_brg);
+		}else{
+			$this->db->select('min_pack_import');
+			$this->db->where('nama_brg_import', $nama_brg);
 		}
 		$query=$this->db->get($tabel);
 		return $query->result();
@@ -107,7 +122,47 @@ class Ksokp_model extends CI_Model {
 		return $query->result();
 	}
 /* ============================================== LOKAL ============================================== */
-	
+
+
+	public function deleteKp($tabel)
+	{
+			if ($tabel == "komponen_lokal") {
+				$id = $this->input->post('id');
+				$this->db->where('id_lokal', $id);
+			}else{
+				$id = $this->input->post('id');
+				$this->db->where('id_import', $id);
+			}
+	        $result = $this->db->delete($tabel);
+	        return $result;
+	}	
+
+	public function updateKp($id,$supplier,$avgusage,$stodaily,$usagedaily,$incoming,$tabel)
+	{
+		if($tabel == "komponen_lokal"){
+			$data = array( 
+				'supplier_lokal' 		=>$supplier , 
+				'avg_usage_lokal' 	=>$avgusage, 
+				'sto_daily_lokal' 	=>$stodaily, 
+				'usage_daily_lokal' 	=>$usagedaily, 
+				'incoming_daily_lokal' 	=>$incoming,
+				'date_inp_lokal'		=>date('Y-m-d H:i:s'), 
+			);
+			$this->db->where('id_lokal', $id);
+    	}else{
+    		$data = array(
+				'supplier_import' 		=>$supplier , 
+				'avg_usage_import' 	=>$avgusage, 
+				'sto_daily_import' 	=>$stodaily, 
+				'usage_daily_import' 	=>$usagedaily, 
+				'incoming_daily_import' 	=>$incoming, 
+			);
+			$this->db->where('id_import', $id);
+    	}
+    	
+		$result = $this->db->update($tabel,$data);
+		return 	$result;
+	}
 
 /* ============================================== IMPORT ============================================== */
 

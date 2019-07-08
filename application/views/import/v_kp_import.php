@@ -12,7 +12,7 @@
 		<div class="box">  
 			<div class="box-body">
 				
-	            <table id="kp_import" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+	            <table id="kp_import" class="display nowrap table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
 	              <thead class="text-primary">
 	                <tr>
 	                	<th class="th-sm" hidden> ID </th>
@@ -29,6 +29,7 @@
 	                	<th class="th-sm" > Incoming Daily </th>
 	                	<th class="th-sm" > Balance</th>
 	                	<th class="th-sm" > Status</th>
+	                	<th class="th-sm" > Action</th>
 	                </tr>
 	              </thead>
 	              <tbody id="show_kp_import">
@@ -132,51 +133,21 @@
 	</form>
 <!-- END FORM UPDATE MASTER -->
 
-<!-- START FORM DELETE MASTER -->
-	<form id="formdeletemasterlokal">
-		<div class="modal fade" id="Modal_delete_master_lokal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- START FORM DELETE kp-->
+
+	<form id="formdeletekpimport">
+		<div class="modal fade" id="Modal_delete_kp_import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Delete Component</h4>
+						<h4 class="modal-title">Delete Component Import</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
 					</div>
 					<div class="modal-body">			              
 						<div class="form-group col-lg-12">
 							<label>Apa Anda Yakin Ingin Meng<font style="color: red;"><b>Hapus</b></font> ini?</label>
 							<br><br>
-							<center><H4 id="msglokal"></H4></center>
-							<input type="hidden" name="iddellokal" id="iddellokal" class="form-control">
-
-						</div>
-
-						<br />
-						<center>
-							<button type="button" class="btn btn-secondary col-md-3" data-dismiss="modal" style="margin-right: 20px">Cancel</button>
-							<button type="submit" id="btn_delete" class="btn btn-danger col-md-3">Hapus</button>	
-						</center>
-					</div>
-					<div class="modal-footer">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	<form id="formdeletemasterimport">
-		<div class="modal fade" id="Modal_delete_master_import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Delete Component</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			           
-					</div>
-					<div class="modal-body">			              
-						<div class="form-group col-lg-12">
-							<label>Apa Anda Yakin Ingin Meng<font style="color: red;"><b>Hapus</b></font> ini?</label>
-							<br><br>
-							<center><H4 id="msgimport"></H4></center>
+							<center><H4 id="msgkpimport"></H4></center>
 							<input type="hidden" name="iddelimport" id="iddelimport" class="form-control">
 
 						</div>
@@ -194,7 +165,7 @@
 			</div>
 		</div>
 	</form>
-<!-- END FORM DELETE MASTER -->
+<!-- END FORM DELETE Kp -->
 
 </section>
     <!-- /.content

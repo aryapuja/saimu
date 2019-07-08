@@ -83,7 +83,6 @@ public function __construct()
 	public function formDataLokal()
 	{
 		$data['barang'] = $this->ksokp_model->getBarang("master_lokal");
-		$data['satuan'] = $this->ksokp_model->getSatuan("master_lokal");
 
 		$this->load->view('adm_template/header.php');
 		$this->load->view('lokal/v_ins_kp_lokal.php',$data);
@@ -103,12 +102,13 @@ public function __construct()
 		$data = array();
 		
 		$index = 0; // Set index array awal dengan 0
-		foreach($itemlokal as $dataitemlokal){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+		foreach($itemlokal as $dataitemlokal){ // Kita buat perulangan berdasarkan nis sampai data terakahir
 			$ss_pcs[$index] 			= $this->ksokp_model->ceiling($avgusagelokal[$index]*0.8,$minpacklokal[$index]);
 			$ss_day[$index]				= number_format($this->ksokp_model->ceiling($avgusagelokal[$index]*0.8,$minpacklokal[$index])/$avgusagelokal[$index],2);
 			$bal[$index]				= ($stodailylokal[$index] + $incomingdailylokal[$index]) - $usagedailylokal[$index];
 			$bts_atas[$index]			= $ss_pcs[$index]+($ss_pcs[$index]*0.2);
 			$bts_bawah[$index]			= $ss_pcs[$index]-($ss_pcs[$index]*0.2);
+			
 			if($bal[$index] < $bts_bawah[$index]){
 				$status[$index]			= "LESS STOCK";
 			}else if($bal[$index] > $bts_atas[$index]){
@@ -137,6 +137,30 @@ public function __construct()
 
 		echo json_encode($sql);
 	}
+
+	public function deletekplokal()
+	{
+		// var_dump($this->input->post('id_brg_lokal_del'));
+		// die();
+		$result = $this->ksokp_model->deleteKp("komponen_lokal");
+		echo json_encode($result);
+	}
+
+	public function updateKpLokal()
+	{
+		$id = $this->input->post('id_lokal_up');
+        $nama_brg = $this->input->post('brg_lokal_up');
+        $supplier = $this->input->post('supplier_lokal_up');
+        $avgusage = $this->input->post('avgusage_lokal_up');
+        $stodaily = $this->input->post('stodaily_lokal_up');
+        $usagedaily = $this->input->post('usagedaily_lokal_up');
+        $incoming = $this->input->post('incoming_lokal_up');
+        $tabel = $this->input->post('tabel');
+
+		$result = $this->ksokp_model->updateKp($id,$supplier,$avgusage,$stodaily,$usagedaily,$incoming,$tabel);
+
+		echo json_encode($result);
+	}
 	
 	/* ============================================== IMPORT ============================================== */
 
@@ -162,7 +186,6 @@ public function __construct()
 	public function formDataImport()
 	{
 		$data['barang'] = $this->ksokp_model->getBarang("master_import");
-		$data['satuan'] = $this->ksokp_model->getSatuan("master_import");
 
 		$this->load->view('adm_template/header.php');
 		$this->load->view('import/v_ins_kp_import.php',$data);
@@ -215,5 +238,13 @@ public function __construct()
 		$sql = $this->ksokp_model->insertDataKp($data,"komponen_import");
 
 		echo json_encode($sql);
+	}
+
+	public function deletekpimport()
+	{
+		// var_dump($this->input->post('id_brg_import_del'));
+		// die();
+		$result = $this->ksokp_model->deleteKp("komponen_import");
+		echo json_encode($result);
 	}
 }
