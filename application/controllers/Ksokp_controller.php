@@ -138,29 +138,43 @@ public function __construct()
 		echo json_encode($sql);
 	}
 
-	public function deletekplokal()
+	public function deleteKpLokal()
 	{
-		// var_dump($this->input->post('id_brg_lokal_del'));
-		// die();
 		$result = $this->ksokp_model->deleteKp("komponen_lokal");
 		echo json_encode($result);
 	}
 
 	public function updateKpLokal()
 	{
-		$id = $this->input->post('id_lokal_up');
-        $nama_brg = $this->input->post('brg_lokal_up');
-        $supplier = $this->input->post('supplier_lokal_up');
-        $avgusage = $this->input->post('avgusage_lokal_up');
-        $stodaily = $this->input->post('stodaily_lokal_up');
+		$id 		= $this->input->post('id_lokal_up');
+		$supplier 	= $this->input->post('supplier_lokal_up');
+		$min_pack 	= $this->input->post('min_pack_lokal_up');
+        $avgusage 	= $this->input->post('avgusage_lokal_up');
+		$ss_pcs 	= $this->ksokp_model->ceiling($avgusage*0.8,$min_pack);
+		$ss_day		= number_format($ss_pcs/$avgusage,2);
+        $stodaily 	= $this->input->post('stodaily_lokal_up');
         $usagedaily = $this->input->post('usagedaily_lokal_up');
-        $incoming = $this->input->post('incoming_lokal_up');
-        $tabel = $this->input->post('tabel');
+        $incoming 	= $this->input->post('incoming_lokal_up');
+		$bal		= ($stodaily + $incoming) - $usagedaily;
+		date_default_timezone_set('Asia/Jakarta');
+		$date 		= date('Y-m-d H:i:s');
+		$bts_atas	= $ss_pcs+($ss_pcs*0.2);
+		$bts_bawah	= $ss_pcs-($ss_pcs*0.2);
+		if($bal < $bts_bawah){
+			$status	= "LESS STOCK";
+		}else if($bal > $bts_atas){
+			$status	= "OVER STOCK";
+		}else{
+			$status	= "OK";
+		}
+        $tabel 		= $this->input->post('tabel');
 
-		$result = $this->ksokp_model->updateKp($id,$supplier,$avgusage,$stodaily,$usagedaily,$incoming,$tabel);
+		$result = $this->ksokp_model->updateKp($id,$supplier,$avgusage,$ss_pcs,$ss_day,$stodaily,$usagedaily,$incoming,$bal,$status,$date,$tabel);
 
 		echo json_encode($result);
 	}
+
+	/* ============================================== LOKAL ============================================== */
 	
 	/* ============================================== IMPORT ============================================== */
 
@@ -240,11 +254,41 @@ public function __construct()
 		echo json_encode($sql);
 	}
 
-	public function deletekpimport()
+	public function deleteKpImport()
 	{
-		// var_dump($this->input->post('id_brg_import_del'));
-		// die();
 		$result = $this->ksokp_model->deleteKp("komponen_import");
 		echo json_encode($result);
 	}
+
+	public function updateKpImport()
+	{
+		$id 		= $this->input->post('id_import_up');
+        $nama_brg 	= $this->input->post('brg_import_up');
+		$supplier 	= $this->input->post('supplier_import_up');
+        $avgusage 	= $this->input->post('avgusage_import_up');
+        $ss_pcs 	= $avgusage*4;
+        $ss_day 	= number_format(4,2);
+        $stodaily 	= $this->input->post('stodaily_import_up');
+        $usagedaily = $this->input->post('usagedaily_import_up');
+        $incoming 	= $this->input->post('incoming_import_up');
+		$bal		= ($stodaily + $incoming) - $usagedaily;
+		$bts_atas	= $ss_pcs*0.875;
+		$bts_bawah	= $ss_pcs*1.125;
+		if($bal < $bts_bawah){
+			$status	= "LESS STOCK";
+		}else if($bal > $bts_atas){
+			$status	= "OVER STOCK";
+		}else{
+			$status	= "OK";
+		}
+		date_default_timezone_set('Asia/Jakarta');
+		$date 		= date('Y-m-d H:i:s');
+        $tabel 		= $this->input->post('tabel');
+
+		$result = $this->ksokp_model->updateKp($id,$supplier,$avgusage,$ss_pcs,$ss_day,$stodaily,$usagedaily,$incoming,$bal,$status,$date,$tabel);
+
+		echo json_encode($result);
+	}
+
+	/* ============================================== IMPORT ============================================== */
 }

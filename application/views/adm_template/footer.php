@@ -13,7 +13,8 @@
 <!-- DataTable -->
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo base_url() ?>assets/sweetalert2@8.js"></script>
+<script src="<?php echo base_url() ?>assets/sa/dist/sweetalert2.all.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/sweetalert2@8.js"></script> -->
 
 
 <script>
@@ -123,7 +124,7 @@
     	});
     }
 
-    /* =================================== START ADD MASTER ===================================	*/
+/* ==================================== START ADD MASTER ==================================== */
     //Save kegiatan baru
     $('#formnewmaster').submit(function(e){
     	e.preventDefault();
@@ -158,10 +159,10 @@
 
 		return false;
 	});
-    /*  =================================== END ADD MASTER ===================================		*/
+/* ===================================== END ADD MASTER ==================================== */
 
+/* ==================================== START DELETE MASTER ==================================== */
 
-    /*  =================================== START DELETE MASTER ===================================	*/
     //get data for delete record show prompt modal
     $('#master_lokal').on('click','.item_delete_mlokal',function(){
     	var id = $(this).data('id_mlokal');
@@ -234,11 +235,9 @@
     	});
     	return false;
     });
+/* ===================================== END DELETE MASTER ====================================	*/
 
-
-    /*	=================================== END DELETE MASTER ===================================	*/
-
-    /*  =================================== START UPDATE MASTER ===================================	*/
+/* ==================================== START UPDATE MASTER ==================================== */
 
     $('#master_lokal').on('click','.item_edit_mlokal',function(){
     	// memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
@@ -343,9 +342,10 @@
 		});
 		return false;
 	});
+/* ===================================== END UPDATE MASTER ==================================== */
 
-    /*  =================================== END UPDATE MASTER ===================================   */
-    /*  =================================== GET KP Lokal ===================================	*/
+
+/* ==================================== GET KP Lokal ==================================== */
 
     function showKpLokal(){
         $.ajax({
@@ -359,15 +359,13 @@
                 
                 for(i=0; i<data.length; i++){
                     var ii = i+1;
-                    status = "";
+                    color = "";
                     if (data[i].status_lokal == "OK") {
-                        status = "success";
+                        color = "#00ff00";
                     }else if(data[i].status_lokal == "LESS STOCK"){
-                        status = "warning";
-
+                        color = "#ffff00";
                     }else if(data[i].status_lokal == "OVER STOCK"){
-                        status = "danger";
-
+                        color = "#ff0000";
                     }
                     html += '<tr>'+
                     '<td hidden>'+data[i].id_lokal+'</td>'+
@@ -383,11 +381,28 @@
                     '<td>'+data[i].usage_daily_lokal+'</td>'+
                     '<td>'+data[i].incoming_daily_lokal+'</td>'+
                     '<td>'+data[i].bal_lokal+'</td>'+
-                    '<td><span class="badge badge-'+status+'">'+data[i].status_lokal+'</span></td>'+
+                    '<td style="background-color:'+color+';"> <b>'+data[i].status_lokal+'</b></td>'+
                     '<td>'+data[i].date_inp_lokal+'</td>'+
-                    '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_kplokal" data-id_mlokal="'+data[i].id_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'" data-supplier_mlokal="'+data[i].supplier_lokal+'" data-avg_usage_mlokal="'+data[i].avg_usage_lokal+'" data-sto_daily_mlokal="'+data[i].sto_daily_lokal+'" data-usage_daily_mlokal="'+data[i].usage_daily_lokal+'" data-incoming_daily_mlokal="'+data[i].incoming_daily_lokal+'" data-satuan_mlokal="'+data[i].satuan_lokal+'" data-min_pack_mlokal="'+data[i].min_pack_lokal+'" data-safety_stock_pcs_mlokal="'+data[i].safety_stock_pcs_lokal+'" data-safety_stock_day_mlokal="'+data[i].safety_stock_day_lokal+'" data-bal_mlokal="'+data[i].bal_lokal+'" data-status_mlokal="'+data[i].status_lokal+'" data-date_inp_mlokal="'+data[i].date_inp_lokal+'"> <span class="fa fa-edit"></span> </a>'+ 
-                    '     '+
-                    '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_kplokal" data-id_mlokal="'+data[i].id_lokal+'" data-brg_mlokal="'+data[i].nama_brg_lokal+'"> <span class="fa fa-remove"></span> </a>'+
+                    '<td>'+ 
+                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_kplokal" data-id_kplokal="'+data[i].id_lokal+
+                            '" data-brg_kplokal="'+data[i].nama_brg_lokal+
+                            '" data-supplier_kplokal="'+data[i].supplier_lokal+
+                            '" data-avg_usage_kplokal="'+data[i].avg_usage_lokal+
+                            '" data-sto_daily_kplokal="'+data[i].sto_daily_lokal+
+                            '" data-usage_daily_kplokal="'+data[i].usage_daily_lokal+
+                            '" data-incoming_daily_kplokal="'+data[i].incoming_daily_lokal+
+                            '" data-satuan_kplokal="'+data[i].satuan_lokal+
+                            '" data-min_pack_kplokal="'+data[i].min_pack_lokal+
+                            '" data-safety_stock_pcs_kplokal="'+data[i].safety_stock_pcs_lokal+
+                            '" data-safety_stock_day_kplokal="'+data[i].safety_stock_day_lokal+
+                            '" data-bal_kplokal="'+data[i].bal_lokal+
+                            '" data-status_kplokal="'+data[i].status_lokal+
+                            '" data-date_inp_kplokal="'+data[i].date_inp_lokal+
+                            '"> <span class="fa fa-edit"></span> </a>'+ 
+                            '     '+
+                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_kplokal" data-id_kplokal="'+data[i].id_lokal+
+                            '" data-brg_kplokal="'+data[i].nama_brg_lokal+
+                            '"> <span class="fa fa-remove"></span> </a>'+
                     '</td>'+
                     '</tr>';
                 }
@@ -408,8 +423,9 @@
 
         });
     }
-    /*  =================================== END KP Lokal ===================================    */
-    /*  =================================== GET KP Import ===================================    */
+/* ==================================== END KP Lokal ==================================== */
+
+/* ==================================== GET KP Import ==================================== */
 
     function showKpImport(){
         $.ajax({
@@ -423,15 +439,13 @@
                 
                 for(i=0; i<data.length; i++){
                     var ii = i+1;
-                    status = "";
+                    color = "";
                     if (data[i].status_import == "OK") {
-                        status = "success";
+                        color = "#00ff00";
                     }else if(data[i].status_import == "LESS STOCK"){
-                        status = "warning";
-
+                        color = "#ffff00";
                     }else if(data[i].status_import == "OVER STOCK"){
-                        status = "danger";
-
+                        color = "#ff0000";
                     }
                     html += '<tr>'+
                     '<td hidden>'+data[i].id_import+'</td>'+
@@ -447,11 +461,28 @@
                     '<td>'+data[i].usage_daily_import+'</td>'+
                     '<td>'+data[i].incoming_daily_import+'</td>'+
                     '<td>'+data[i].bal_import+'</td>'+
-                    '<td><span class="badge badge-'+status+'">'+data[i].status_import+'</span></td>'+
+                    '<td style="background-color:'+color+';"> <b>'+data[i].status_import+'</b></td>'+
                     '<td>'+data[i].date_inp_import+'</td>'+
-                    '<td>'+ '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_mimport" data-id_mimport="'+data[i].id_import+'" data-brg_mimport="'+data[i].nama_brg_import+'" data-supplier_mimport="'+data[i].supplier_import+'" data-avg_usage_mimport="'+data[i].avg_usage_import+'" data-sto_daily_mimport="'+data[i].sto_daily_import+'" data-usage_daily_mimport="'+data[i].usage_daily_import+'" data-incoming_daily_mimport="'+data[i].incoming_daily_import+'"> <span class="fa fa-edit"></span> </a>'+ 
-                    '     '+
-                    '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_mimport" data-id_mimport="'+data[i].id_import+'" data-brg_mimport="'+data[i].nama_brg_import+'"> <span class="fa fa-remove"></span> </a>'+
+                    '<td>'+ 
+                            '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_kpimport" data-id_kpimport="'+data[i].id_import+
+                            '" data-brg_kpimport="'+data[i].nama_brg_import+
+                            '" data-supplier_kpimport="'+data[i].supplier_import+
+                            '" data-avg_usage_kpimport="'+data[i].avg_usage_import+
+                            '" data-sto_daily_kpimport="'+data[i].sto_daily_import+
+                            '" data-usage_daily_kpimport="'+data[i].usage_daily_import+
+                            '" data-incoming_daily_kpimport="'+data[i].incoming_daily_import+
+                            '" data-satuan_kpimport="'+data[i].satuan_import+
+                            '" data-min_pack_kpimport="'+data[i].min_pack_import+
+                            '" data-safety_stock_pcs_kpimport="'+data[i].safety_stock_pcs_import+
+                            '" data-safety_stock_day_kpimport="'+data[i].safety_stock_day_import+
+                            '" data-bal_kpimport="'+data[i].bal_import+
+                            '" data-status_kpimport="'+data[i].status_import+
+                            '" data-date_inp_kpimport="'+data[i].date_inp_import+
+                            '"> <span class="fa fa-edit"></span> </a>'+ 
+                            '     '+
+                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete_kpimport" data-id_kpimport="'+data[i].id_import+
+                            '" data-brg_kpimport="'+data[i].nama_brg_import+
+                            '"> <span class="fa fa-remove"></span> </a>'+
                     '</td>'+
                     '</tr>';
                 }
@@ -472,10 +503,10 @@
 
         });
     }
-    /*  =================================== END GET KP Import ===================================    */
+/* ==================================== GET KP Import ==================================== */
     
 
-    /*  =================================== START ADD KP =================================== */
+/* ==================================== START ADD KP ==================================== */
     $('#addKpLokal').submit(function(e){
         e.preventDefault();
         // memasukkan data inputan ke variabel
@@ -542,109 +573,110 @@
 
         return false;
     });
+/*  ==================================== END ADD KP ==================================== */
 
-    /*  =================================== END ADD KP =================================== */
+/* ==================================== START DELETE KP =================================== */
+    //get data for delete record show prompt modal
+    $('#kp_lokal').on('click','.item_delete_kplokal',function(){
+        var id = $(this).data('id_kplokal');
+        var brg = $(this).data('brg_kplokal');
+         
 
-    //  ===================  START Delete KP ===================================
-            //get data for delete record show prompt modal
-            $('#kp_lokal').on('click','.item_delete_mlokal',function(){
-                var id = $(this).data('id_mlokal');
-                var brg = $(this).data('brg_mlokal');
-                 
+        $('#Modal_delete_kp_lokal').modal('show');
+        document.getElementById("msgkplokal").innerHTML='Item: "'+id+'"';
 
-                $('#Modal_delete_kp_lokal').modal('show');
-                document.getElementById("msgkplokal").innerHTML='Item: "'+id+'"';
+        $('[name="deletekplokal"]').val(id);
+    });
 
-                $('[name="deletekplokal"]').val(id);
-            });
+    //delete record to database
+    $('#formdeletekplokal').submit(function(e){
+                e.preventDefault(); 
+        var id = $('#deletekplokal').val();
 
-            //delete record to database
-            $('#formdeletekplokal').submit(function(e){
-                        e.preventDefault(); 
-                var id = $('#deletekplokal').val();
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url(); ?>/ksokp_controller/deleteKpLokal",
+            dataType : "JSON",
+            data : {id:id},
+            success: function(){
+                $('[name="deletekplokal"]').val("");                       
+                 Swal.fire({
+                    type: 'success',
+                    title: 'Berhasil menghapus data ',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                $('#Modal_delete_kp_lokal').modal('hide');
+                $("#kp_lokal").DataTable().destroy();
+                $("#kp_lokal").find('tbody').empty();
+                document.getElementById('formdeletekplokal').reset();
+                showKpLokal();  
+            }
+        });
+        return false;
+    });
 
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo site_url(); ?>/ksokp_controller/deletekplokal",
-                    dataType : "JSON",
-                    data : {id:id},
-                    success: function(){
-                        $('[name="deletekplokal"]').val("");                       
-                         Swal.fire({
-                            type: 'success',
-                            title: 'Berhasil menghapus data ',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#Modal_delete_kp_lokal').modal('hide');
-                        $("#kp_lokal").DataTable().destroy();
-                        $("#kp_lokal").find('tbody').empty();
-                        document.getElementById('formdeletekplokal').reset();
-                        showKpLokal();  
-                    }
-                });
-                return false;
-            });
+    //get data for delete record show prompt modal
+    $('#kp_import').on('click','.item_delete_kpimport',function(){
+        var id = $(this).data('id_kpimport');
+        var brg = $(this).data('brg_kpimport');
+         
 
-            //get data for delete record show prompt modal
-            $('#kp_import').on('click','.item_delete_mimport',function(){
-                var id = $(this).data('id_mimport');
-                var brg = $(this).data('brg_mimport');
-                 
+        $('#Modal_delete_kp_import').modal('show');
+        document.getElementById("msgkpimport").innerHTML='Item: "'+brg+'"';
 
-                $('#Modal_delete_kp_import').modal('show');
-                document.getElementById("msgkpimport").innerHTML='Item: "'+brg+'"';
+        $('[name="iddelimport"]').val(id);
+    });
 
-                $('[name="iddelimport"]').val(id);
-            });
+    //delete record to database
+    $('#formdeletekpimport').submit(function(e){
+        e.preventDefault(); 
+        var id = $('#iddelimport').val();
 
-            //delete record to database
-            $('#formdeletekpimport').submit(function(e){
-                        e.preventDefault(); 
-                var id = $('#iddelimport').val();
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url(); ?>/ksokp_controller/deleteKpImport",
+            dataType : "JSON",
+            data : {id:id},
+            success: function(){
+                $('[name="iddelimport"]').val("");                       
+                 Swal.fire({
+                    type: 'success',
+                    title: 'Berhasil menghapus data ',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                $('#Modal_delete_kp_import').modal('hide');
+                $("#kp_import").DataTable().destroy();
+                $("#kp_import").find('tbody').empty();
+                document.getElementById('formdeletekpimport').reset();
+                showKpImport();
+                
+            }
+        });
+        return false;
+    });
+/* ===================================== END DELETE KP ==================================== */
+  
+/* ==================================== START UPDATE KP ==================================== */
 
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo site_url(); ?>/ksokp_controller/deletekpimport",
-                    dataType : "JSON",
-                    data : {id:id},
-                    success: function(){
-                        $('[name="iddelimport"]').val("");                       
-                         Swal.fire({
-                            type: 'success',
-                            title: 'Berhasil menghapus data ',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#Modal_delete_kp_import').modal('hide');
-                        $("#kp_import").DataTable().destroy();
-                        $("#kp_import").find('tbody').empty();
-                        document.getElementById('formdeletekpimport').reset();
-                        showKpImport();
-                        
-                    }
-                });
-                return false;
-            });
-//   ==================  END DELET
-//   ==================  Satart Update KP ====================================
-//UPDATE MASTER to database (submit button)
-   $('#kp_lokal').on('click','.item_edit_kplokal',function(){
+    //UPDATE MASTER to database (submit button)
+    $('#kp_lokal').on('click','.item_edit_kplokal',function(){
         // memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
-        var upid        = $(this).data('id_mlokal');
-        var upbrg       = $(this).data('brg_mlokal'); 
-        var upsatuan       = $(this).data('satuan_mlokal'); 
-        var upminpack       = $(this).data('min_pack_mlokal');
-        var upsafetypcs       = $(this).data('safety_stock_pcs_mlokal'); 
-        var upsafetyday       = $(this).data('safety_stock_day_mlokal'); 
-        var upbalance       = $(this).data('bal_mlokal'); 
-        var upstatus      = $(this).data('status_mlokal'); 
-        var update       = $(this).data('date_inp_mlokal'); 
-        var upsupplier    = $(this).data('supplier_mlokal');
-        var upavgusage  = $(this).data('avg_usage_mlokal'); 
-        var upstodaily  = $(this).data('sto_daily_mlokal');
-        var upusagedaily  = $(this).data('usage_daily_mlokal');
-        var upincoming = $(this).data('incoming_daily_mlokal');
+        var upid            = $(this).data('id_kplokal');
+        var upbrg           = $(this).data('brg_kplokal'); 
+        var upsatuan        = $(this).data('satuan_kplokal'); 
+        var upminpack       = $(this).data('min_pack_kplokal');
+        var upsafetypcs     = $(this).data('safety_stock_pcs_kplokal'); 
+        var upsafetyday     = $(this).data('safety_stock_day_kplokal'); 
+        var upbalance       = $(this).data('bal_kplokal'); 
+        var upstatus        = $(this).data('status_kplokal'); 
+        var update          = $(this).data('date_inp_kplokal'); 
+        var upsupplier      = $(this).data('supplier_kplokal');
+        var upavgusage      = $(this).data('avg_usage_kplokal'); 
+        var upstodaily      = $(this).data('sto_daily_kplokal');
+        var upusagedaily    = $(this).data('usage_daily_kplokal');
+        var upincoming      = $(this).data('incoming_daily_kplokal');
 
 
         // memasukkan data ke form updatean
@@ -670,14 +702,16 @@
     $('#formupdatekplokal').submit(function(e){
         e.preventDefault(); 
         // memasukkan data dari form update ke variabel untuk update db
-        var up_id       = $('#id_up_kplokal').val();
-        var up_brg      = $('#nama_brg_up_kplokal').val();
-        var up_supplier   = $('#supplier_up_kplokal').val();
-        var up_avgusage = $('#avg_usage_up_kplokal').val();
-        var up_usagedaily = $('#usage_daily_up_kplokal').val();
-        var up_stodaily = $('#sto_daily_up_kplokal').val();
-        var up_incoming = $('#incoming_up_kplokal').val();
-        var tabel       = "komponen_lokal";
+        var up_id               = $('#id_up_kplokal').val();
+        var up_supplier         = $('#supplier_up_kplokal').val();
+        var up_min_pack         = $('#min_pack_up_kplokal').val();
+        var up_safety_stock_pcs = $('#safetypcs_up_kplokal').val();
+        var up_safety_stock_day = $('#safetyday_up_kplokal').val();
+        var up_avgusage         = $('#avg_usage_up_kplokal').val();
+        var up_stodaily         = $('#sto_daily_up_kplokal').val();
+        var up_usagedaily       = $('#usage_daily_up_kplokal').val();
+        var up_incoming         = $('#incoming_up_kplokal').val();
+        var tabel               = "komponen_lokal";
 
         $.ajax({
             type : "POST",
@@ -686,9 +720,12 @@
             data : { 
                 id_lokal_up:up_id,
                 supplier_lokal_up:up_supplier,
+                min_pack_lokal_up:up_min_pack,
+                safety_stock_pcs_lokal:up_safety_stock_pcs,
+                safety_stock_day_lokal:up_safety_stock_day,
                 avgusage_lokal_up:up_avgusage,
-                usagedaily_lokal_up:up_usagedaily,
                 stodaily_lokal_up:up_stodaily,
+                usagedaily_lokal_up:up_usagedaily,
                 incoming_lokal_up:up_incoming,
                 tabel:tabel
             },
@@ -701,15 +738,103 @@
                             timer: 1500
                         })
                 $('#Modal_update_kp_lokal').modal('hide'); 
-                refresh();
+                $("#kp_lokal").DataTable().destroy();
+                $("#kp_lokal").find('tbody').empty();
+                document.getElementById('formupdatekplokal').reset();
+                showKpLokal();
             }
         });
         return false;
     });
 
-//   ==================  END Update kp
+    //UPDATE MASTER to database (submit button)
+    $('#kp_import').on('click','.item_edit_kpimport',function(){
+        // memasukkan data yang dipilih dari tbl list agenda updatean ke variabel 
+        var upid            = $(this).data('id_kpimport');
+        var upbrg           = $(this).data('brg_kpimport'); 
+        var upsatuan        = $(this).data('satuan_kpimport'); 
+        var upminpack       = $(this).data('min_pack_kpimport');
+        var upsafetypcs     = $(this).data('safety_stock_pcs_kpimport'); 
+        var upsafetyday     = $(this).data('safety_stock_day_kpimport'); 
+        var upbalance       = $(this).data('bal_kpimport'); 
+        var upstatus        = $(this).data('status_kpimport'); 
+        var update          = $(this).data('date_inp_kpimport'); 
+        var upsupplier      = $(this).data('supplier_kpimport');
+        var upavgusage      = $(this).data('avg_usage_kpimport'); 
+        var upstodaily      = $(this).data('sto_daily_kpimport');
+        var upusagedaily    = $(this).data('usage_daily_kpimport');
+        var upincoming      = $(this).data('incoming_daily_kpimport');
 
 
+        // memasukkan data ke form updatean
+        $('[name="id_up_kpimport"]').val(upid);
+        $('[name="nama_brg_up_kpimport"]').val(upbrg);
+        $('[name="supplier_up_kpimport"]').val(upsupplier);
+        $('[name="avg_usage_up_kpimport"]').val(upavgusage);
+        $('[name="sto_daily_up_kpimport"]').val(upstodaily);
+        $('[name="usage_daily_up_kpimport"]').val(upusagedaily);
+        $('[name="incoming_up_kpimport"]').val(upincoming);
+        $('[name="satuan_up_kpimport"]').val(upsatuan);
+        $('[name="min_pack_up_kpimport"]').val(upminpack);
+        $('[name="safetyday_up_kpimport"]').val(upsafetyday);
+        $('[name="safetypcs_up_kpimport"]').val(upsafetypcs);
+        $('[name="balance_up_kpimport"]').val(upbalance);
+        $('[name="status_up_kpimport"]').val(upstatus);
+        $('[name="date_up_kpimport"]').val(update);
+
+        $('#Modal_update_kp_import').modal('show');
+    });
+
+    $('#formupdatekpimport').submit(function(e){
+        e.preventDefault(); 
+        // memasukkan data dari form update ke variabel untuk update db
+        var up_id               = $('#id_up_kpimport').val();
+        var up_supplier         = $('#supplier_up_kpimport').val();
+        var up_min_pack         = $('#min_pack_up_kpimport').val();
+        var up_safety_stock_pcs = $('#safetypcs_up_kpimport').val();
+        var up_safety_stock_day = $('#safetyday_up_kpimport').val();
+        var up_avgusage         = $('#avg_usage_up_kpimport').val();
+        var up_stodaily         = $('#sto_daily_up_kpimport').val();
+        var up_usagedaily       = $('#usage_daily_up_kpimport').val();
+        var up_incoming         = $('#incoming_up_kpimport').val();
+        var tabel               = "komponen_import";
+
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url(); ?>/ksokp_controller/updateKpImport",
+            dataType : "JSON",
+            data : { 
+                id_import_up:up_id,
+                supplier_import_up:up_supplier,
+                min_pack_import_up:up_min_pack,
+                safety_stock_pcs_import:up_safety_stock_pcs,
+                safety_stock_day_import:up_safety_stock_day,
+                avgusage_import_up:up_avgusage,
+                stodaily_import_up:up_stodaily,
+                usagedaily_import_up:up_usagedaily,
+                incoming_import_up:up_incoming,
+                tabel:tabel
+            },
+
+            success: function(data){
+                Swal.fire({
+                            type: 'success',
+                            title: 'Berhasil memperbarui data ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                $('#Modal_update_kp_import').modal('hide'); 
+                $("#kp_import").DataTable().destroy();
+                $("#kp_import").find('tbody').empty();
+                document.getElementById('formupdatekpimport').reset();
+                showKpImport();
+            }
+        });
+        return false;
+    });
+/* ===================================== END DELETE KP ==================================== */
+
+/* ==================================== OTHER FUNCTION ==================================== */
     function refresh() {
 
     	$("#master_lokal").DataTable().destroy();

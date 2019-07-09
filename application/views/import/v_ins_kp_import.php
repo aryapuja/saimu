@@ -27,11 +27,11 @@
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Satuan</label>
-                  <input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Masukkan Satuan">
+                  <input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Disesuaikan Menurut Item" readonly>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Min. Pack</label>
-                  <input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Masukkan Min. Pack" required>
+                  <input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Disesuaikan Menurut Item" readonly>
                 </div>
                 <div class="col-xs-3 form-group">
                 	<label>Supplier</label>
@@ -89,11 +89,11 @@
             </div>
             <div class="col-xs-3 form-group">
             	<label>Satuan</label>
-            	<input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Masukkan Satuan" required>
+            	<input type="text" class="form-control" name="satuanimport[]" id="satuanimport" placeholder="Disesuaikan Menurut Item" readonly>
             </div>	
             <div class="col-xs-3 form-group">
             	<label>Min. Pack</label>
-              	<input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Masukkan Min. Pack" required>
+              	<input type="number" class="form-control" name="minpackimport[]" id="minpackimport" placeholder="Disesuaikan Menurut Item" readonly>
             </div>
             <div class="col-xs-3 form-group">
             	<label>Supplier</label>
