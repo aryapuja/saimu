@@ -28,11 +28,11 @@
          </div>
          <div class="col-xs-3 form-group">
            <label>Satuan</label>
-           <input type="text" class="form-control slct_satuan" name="satuanlokal[]" id="satuanlokal" placeholder="Masukkan Satuan" readonly="">
+           <input type="text" class="form-control slct_satuan" name="satuanlokal[]" id="satuanlokal" placeholder="Disesuaikan Menurut Item" readonly="">
          </div>
          <div class="col-xs-3 form-group">
            <label>Min. Pack</label>
-           <input type="number" class="form-control" name="minpacklokal[]" id="minpacklokal" placeholder="Masukkan Min. Pack" readonly="">
+           <input type="number" class="form-control" name="minpacklokal[]" id="minpacklokal" placeholder="Disesuaikan Menurut Item" readonly="">
          </div>
          <div class="col-xs-3 form-group">
            <label>Supplier</label>

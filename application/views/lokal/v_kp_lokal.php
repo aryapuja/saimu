@@ -30,6 +30,7 @@
 	                	<th class="th-sm" > Balance</th>
 	                	<th class="th-sm" > Status</th>
 	                	<th class="th-sm" > Last Input</th>
+	                	<th class="th-sm" > Last Update</th>
 	                	<th class="th-sm" > Action</th>
 	                </tr>
 	              </thead>
@@ -57,57 +58,67 @@
 					<div class="modal-body">
 						<div class="container-fluid">
 							<div class="row">
-								<div class="form-group col-lg-12 row">
-									<div class="col-4">
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Nama Barang</label>
 										<input type="text" id="nama_brg_up_kplokal" name="nama_brg_up_kplokal" class="form-control" placeholder="Masukkan Item" style="width: 100%" required readonly="">
 									</div>
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>Satuan</label>
 										<input type="text" id="satuan_up_kplokal" name="satuan_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly="">
 									</div>
-									<div class="col-4">
+								</div>
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Supplier</label>
 										<input type="text" id="supplier_up_kplokal" name="supplier_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required>
 									</div>
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>Min. Pack</label>
 										<input type="text" id="min_pack_up_kplokal" name="min_pack_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly> 
 									</div>
-									<div class="col-4">
+								</div>
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Safety Stock(pcs)</label>
 										<input type="text" id="safetypcs_up_kplokal" name="safetypcs_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly>
 									</div>
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>Safety Stock(day)</label>
 										<input type="text" id="safetyday_up_kplokal" name="safetyday_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly>
 									</div>
-									<div class="col-4">
+								</div>
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Average Usage/day</label>
 										<input type="number" id="avg_usage_up_kplokal" name="avg_usage_up_kplokal" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
 									</div>
-								</div>
-								<div class="form-group col-lg-12 row">
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>STO Daily </label>
 										<input type="number" id="sto_daily_up_kplokal" name="sto_daily_up_kplokal" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
 									</div>
-									<div class="col-4">
+								</div>
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Usage Daily</label>
 										<input type="number" id="usage_daily_up_kplokal" name="usage_daily_up_kplokal" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
 									</div>
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>Incoming Daily</label>
 										<input type="number" id="incoming_up_kplokal" name="incoming_up_kplokal" class="form-control" placeholder="Masukkan Min. Lokal" style="width: 100%" required>
 									</div>
-									<div class="col-4">
+								</div>
+								<div class="form-group col-md-12 row">
+									<div class="col-md-6">
 										<label>Balance</label>
 										<input type="text" id="balance_up_kplokal" name="balance_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly>
 									</div>
-									<div class="col-4">
+									<div class="col-md-6">
 										<label>Status</label>
-										<input type="text" id="status_up_kplokal" name="status_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly>
+										<input type="text" id="status_up_kplokal" name="status_up_kplokal" class="form-control" placeholder="" style="width: 100%" required readonly>
 									</div>
+								</div>
+								<div class="form-group col-md-12 row">
 									<div class="col-4">
 										<label>Last Update</label>
 										<input type="text" id="date_up_kplokal" name="date_up_kplokal" class="form-control" placeholder="Masukkan Satuan Lokal" style="width: 100%" required readonly>

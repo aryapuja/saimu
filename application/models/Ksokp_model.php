@@ -156,7 +156,7 @@ class Ksokp_model extends CI_Model {
 				'incoming_daily_lokal'		=> $incoming, 
 				'bal_lokal'					=> $bal,
 				'status_lokal'				=> $status,
-				'date_inp_lokal'			=> $date, 
+				'date_upd_lokal'			=> $date, 
 			);
 			$this->db->where('id_lokal', $id);
     	}else{
@@ -168,7 +168,7 @@ class Ksokp_model extends CI_Model {
 				'incoming_daily_import'		=> $incoming, 
 				'bal_import'				=> $bal,
 				'status_import'				=> $status,
-				'date_inp_import'			=> $date, 
+				'date_upd_import'			=> $date, 
 			);
 			$this->db->where('id_import', $id);
     	}
@@ -179,6 +179,17 @@ class Ksokp_model extends CI_Model {
 
 /* ================================================================ KP ================================================================ */
 
+	public function getKpLokalView()
+	{
+		$query = $this->db->query("SELECT * FROM `komponen_lokal` WHERE date_inp_lokal >= NOW() - INTERVAL 1 day");
+		return $query->result();
+	}
+
+	public function getKpImportView()
+	{
+		$query = $this->db->query("SELECT * FROM komponen_import WHERE date_inp_import IN (SELECT max(date_inp_import) FROM komponen_import group by nama_brg_import)");
+		return $query->result();
+	}
 }
 
 /* End of file ksokp.php */

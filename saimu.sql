@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2019 at 03:38 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jul 10, 2019 at 02:30 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,15 +42,16 @@ CREATE TABLE `komponen_import` (
   `incoming_daily_import` int(11) NOT NULL,
   `bal_import` int(11) NOT NULL,
   `status_import` enum('LESS STOCK','OK','OVER STOCK','') NOT NULL,
-  `date_inp_import` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date_inp_import` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_upd_import` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `komponen_import`
 --
 
-INSERT INTO `komponen_import` (`id_import`, `nama_brg_import`, `satuan_import`, `supplier_import`, `min_pack_import`, `safety_stock_pcs_import`, `safety_stock_day_import`, `avg_usage_import`, `sto_daily_import`, `usage_daily_import`, `incoming_daily_import`, `bal_import`, `status_import`, `date_inp_import`) VALUES
-(2, 'Politener PT-56', '', 'IMPORT', 1920, 12000, 4, 3000, 17500, 3100, 0, 14400, '', '2019-07-07 11:18:00');
+INSERT INTO `komponen_import` (`id_import`, `nama_brg_import`, `satuan_import`, `supplier_import`, `min_pack_import`, `safety_stock_pcs_import`, `safety_stock_day_import`, `avg_usage_import`, `sto_daily_import`, `usage_daily_import`, `incoming_daily_import`, `bal_import`, `status_import`, `date_inp_import`, `date_upd_import`) VALUES
+(2, 'Politener PT-56', '', 'IMPORT', 1920, 12004, 4, 3001, 17500, 3100, 0, 14400, 'OVER STOCK', '2019-07-09 06:44:17', '2019-07-09 06:44:17');
 
 -- --------------------------------------------------------
 
@@ -72,30 +73,31 @@ CREATE TABLE `komponen_lokal` (
   `incoming_daily_lokal` int(11) NOT NULL,
   `bal_lokal` int(11) NOT NULL,
   `status_lokal` enum('LESS STOCK','OK','OVER STOCK','') NOT NULL,
-  `date_inp_lokal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date_inp_lokal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_upd_lokal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `komponen_lokal`
 --
 
-INSERT INTO `komponen_lokal` (`id_lokal`, `nama_brg_lokal`, `satuan_lokal`, `supplier_lokal`, `min_pack_lokal`, `safety_stock_pcs_lokal`, `safety_stock_day_lokal`, `avg_usage_lokal`, `sto_daily_lokal`, `usage_daily_lokal`, `incoming_daily_lokal`, `bal_lokal`, `status_lokal`, `date_inp_lokal`) VALUES
-(1, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 1, 70, 80, 94, 80, 66, '', '2019-07-05 09:57:11'),
-(2, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 56, 1, 70, 80, 94, 80, 66, '', '2019-07-05 10:00:50'),
-(3, 'BOX SF-12\r\n', 'pcs', 'tes', -210, 0, 1, 70, 80, 94, 80, 66, 'OK', '2019-07-07 06:00:24'),
-(4, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 60, 1, 70, 80, 94, 80, 66, 'OK', '2019-07-07 06:01:18'),
-(5, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 1, 80, 80, 94, 80, 66, 'OK', '2019-07-07 06:25:06'),
-(6, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 0.88, 80, 80, 94, 80, 66, 'OK', '2019-07-07 06:29:44'),
-(7, 'BOX SF-12\r\n', 'pcs', 'tes1', 1, 1, 1, 1, 1, 1, 1, 1, 'OK', '2019-07-07 09:41:57'),
-(8, 'BOX SF-24', 'roll', 'tes2', 2, 2, 1, 2, 2, 2, 2, 2, 'OK', '2019-07-07 09:41:57'),
-(9, 'BOX SF-12\r\n', 'pcs', 'tes1', 10, 70, 0.88, 80, 50, 94, 50, 6, 'OK', '2019-07-07 09:45:30'),
-(10, 'BOX SF-24', 'roll', 'tes2', 10, 70, 0.88, 80, 50, 20, 50, 80, 'OK', '2019-07-07 09:45:30'),
-(11, 'BOX SF-12\r\n', 'pcs', 'tes1', 10, 60, 0.86, 70, 50, 90, 50, 10, 'OK', '2019-07-07 09:54:29'),
-(12, 'BOX SF-24', 'pcs', 'tes2', 10, 60, 0.86, 70, 50, 50, 50, 50, 'OK', '2019-07-07 09:54:29'),
-(13, 'BUBBLE PLASTICS 300x360M', 'roll', 'tes', 10, 60, 0.86, 70, 50, 20, 50, 80, 'OK', '2019-07-07 09:54:29'),
-(14, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 0.88, 80, 50, 20, 50, 80, 'OK', '2019-07-07 09:56:50'),
-(15, 'BOX SF-24', 'roll', 'tes1', 10, 70, 0.88, 80, 50, 50, 50, 50, 'LESS STOCK', '2019-07-07 09:56:50'),
-(16, 'BOX SF-12\r\n', 'roll', 'tes2', 10, 60, 0.86, 70, 50, 90, 50, 10, 'LESS STOCK', '2019-07-07 09:56:50');
+INSERT INTO `komponen_lokal` (`id_lokal`, `nama_brg_lokal`, `satuan_lokal`, `supplier_lokal`, `min_pack_lokal`, `safety_stock_pcs_lokal`, `safety_stock_day_lokal`, `avg_usage_lokal`, `sto_daily_lokal`, `usage_daily_lokal`, `incoming_daily_lokal`, `bal_lokal`, `status_lokal`, `date_inp_lokal`, `date_upd_lokal`) VALUES
+(1, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 1, 70, 80, 94, 80, 66, '', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(2, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 56, 1, 70, 80, 94, 80, 66, '', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(3, 'BOX SF-12\r\n', 'pcs', 'tes', -210, 0, 1, 70, 80, 94, 80, 66, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(4, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 60, 1, 70, 80, 94, 80, 66, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(5, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 1, 80, 80, 94, 80, 66, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(6, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 0.88, 80, 80, 94, 80, 66, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(7, 'BOX SF-12\r\n', 'pcs', 'tes1', 1, 1, 1, 1, 1, 1, 1, 1, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(8, 'BOX SF-24', 'roll', 'tes2', 2, 2, 1, 2, 2, 2, 2, 2, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(9, 'BOX SF-12\r\n', 'pcs', 'tes1', 10, 70, 0.88, 80, 50, 94, 50, 6, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(10, 'BOX SF-24', 'roll', 'tes2', 10, 70, 0.88, 80, 50, 20, 50, 80, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(11, 'BOX SF-12\r\n', 'pcs', 'tes1', 10, 60, 0.86, 70, 50, 90, 50, 10, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(12, 'BOX SF-24', 'pcs', 'tes2', 10, 60, 0.86, 70, 50, 50, 50, 50, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(13, 'BUBBLE PLASTICS 300x360M', 'roll', 'tes', 10, 60, 0.86, 70, 50, 20, 50, 80, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(14, 'BOX SF-12\r\n', 'pcs', 'tes', 10, 70, 0.88, 80, 50, 20, 50, 80, 'OK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(15, 'BOX SF-24', 'roll', 'tes1', 10, 70, 0.88, 80, 50, 50, 50, 50, 'LESS STOCK', '2019-07-08 09:56:50', '0000-00-00 00:00:00'),
+(16, 'BOX SF-12\r\n', 'roll', 'tes2', 10, 60, 0.86, 70, 50, 90, 50, 10, 'LESS STOCK', '2019-07-08 09:56:50', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

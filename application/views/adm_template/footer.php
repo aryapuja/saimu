@@ -1,4 +1,5 @@
 <!-- jQuery 3 -->
+
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -24,6 +25,9 @@
     	showMasterImport(); 
         showKpLokal();  //pemanggilan fungsi tampil lokal.
         showKpImport();
+        showKpLokalView();
+        showKpImportView();
+
 
     	var i=1;  
 	    $('#add').click(function(){  
@@ -383,6 +387,7 @@
                     '<td>'+data[i].bal_lokal+'</td>'+
                     '<td style="background-color:'+color+';"> <b>'+data[i].status_lokal+'</b></td>'+
                     '<td>'+data[i].date_inp_lokal+'</td>'+
+                    '<td>'+data[i].date_upd_lokal+'</td>'+
                     '<td>'+ 
                             '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_kplokal" data-id_kplokal="'+data[i].id_lokal+
                             '" data-brg_kplokal="'+data[i].nama_brg_lokal+
@@ -463,6 +468,7 @@
                     '<td>'+data[i].bal_import+'</td>'+
                     '<td style="background-color:'+color+';"> <b>'+data[i].status_import+'</b></td>'+
                     '<td>'+data[i].date_inp_import+'</td>'+
+                    '<td>'+data[i].date_upd_import+'</td>'+
                     '<td>'+ 
                             '<a href="javascript:void(0);" class="btn btn-warning btn-sm item_edit_kpimport" data-id_kpimport="'+data[i].id_import+
                             '" data-brg_kpimport="'+data[i].nama_brg_import+
@@ -833,6 +839,85 @@
         return false;
     });
 /* ===================================== END DELETE KP ==================================== */
+/* ===================================== Show admin home ==================================== */
+
+function showKpLokalView(){
+        $.ajax({
+            type  : 'POST',
+            url   : '<?php echo base_url()?>index.php/ksokp_controller/getKpLokalView',
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    var ii = i+1;
+                    color = "";
+                    if (data[i].status_lokal == "OK") {
+                        color = "#00ff00";
+                    }else if(data[i].status_lokal == "LESS STOCK"){
+                        color = "#ffff00";
+                    }else if(data[i].status_lokal == "OVER STOCK"){
+                        color = "#ff0000";
+                    }
+                    html += '<tr>'+
+                    '<td hidden>'+data[i].id_okal+'</td>'+
+                    '<td>'+ii+'</td>'+
+                    '<td>'+data[i].nama_brg_lokal+'</td>'+
+                    '<td>'+data[i].satuan_lokal+'</td>'+
+                    '<td>'+data[i].sto_daily_lokal+'</td>'+
+                    '<td>'+data[i].usage_daily_lokal+'</td>'+
+                    '<td>'+data[i].incoming_daily_lokal+'</td>'+
+                    '<td>'+data[i].bal_lokal+'</td>'+
+                    '<td style="background-color:'+color+';"> <b>'+data[i].status_lokal+'</b></td>'+
+                    '</tr>';
+                }
+                $('view_kp_lokal').find('tbody').empty();
+                $('#show_view_kp_lokal').html(html);
+               
+            }
+
+        });
+    }
+
+    function showKpImportView(){
+        $.ajax({
+            type  : 'POST',
+            url   : '<?php echo base_url()?>index.php/ksokp_controller/getKpImportView',
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    var ii = i+1;
+                    color = "";
+                    if (data[i].status_import == "OK") {
+                        color = "#00ff00";
+                    }else if(data[i].status_import == "LESS STOCK"){
+                        color = "#ffff00";
+                    }else if(data[i].status_import == "OVER STOCK"){
+                        color = "#ff0000";
+                    }
+                    html += '<tr>'+
+                    '<td hidden>'+data[i].id_import+'</td>'+
+                    '<td>'+ii+'</td>'+
+                    '<td>'+data[i].nama_brg_import+'</td>'+
+                    '<td>'+data[i].satuan_import+'</td>'+
+                    '<td>'+data[i].sto_daily_import+'</td>'+
+                    '<td>'+data[i].usage_daily_import+'</td>'+
+                    '<td>'+data[i].incoming_daily_import+'</td>'+
+                    '<td>'+data[i].bal_import+'</td>'+
+                    '<td style="background-color:'+color+';"> <b>'+data[i].status_import+'</b></td>'+
+                    '</tr>';
+                }
+                $('view_kp_import').find('tbody').empty();
+                $('#show_view_kp_import').html(html);
+               
+            }
+
+        });
+    }
 
 /* ==================================== OTHER FUNCTION ==================================== */
     function refresh() {

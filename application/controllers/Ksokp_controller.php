@@ -291,4 +291,16 @@ public function __construct()
 	}
 
 	/* ============================================== IMPORT ============================================== */
+
+	public function getKpLokalView()
+	{
+		$data=$this->ksokp_model->getKpLokalView();
+        echo json_encode($data);
+	}
+
+	public function getKpimportView()
+	{
+		$data=$this->ksokp_model->getKpImportView();
+        echo json_encode($data);
+	}
 }
